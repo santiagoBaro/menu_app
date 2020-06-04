@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:menuapp/elements/map_marker.dart';
 
 class ExplorePage extends StatefulWidget {
   ExplorePage({Key key}) : super(key: key);
@@ -31,11 +32,59 @@ class _ExplorePageState extends State<ExplorePage> {
           MarkerLayerOptions(
             markers: [
               Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(-34.92, -56.157),
+                width: 60.0,
+                height: 50.0,
+                point: LatLng(-34.9195, -56.157),
                 builder: (ctx) => Container(
-                  child: FlutterLogo(),
+                  child: MapMarker(
+                    localID: "1",
+                    typeIcon: Icons.fastfood,
+                    timeValue: "45m",
+                    priceValue: "275",
+                    starValue: "4",
+                  ),
+                ),
+              ),
+              Marker(
+                width: 60.0,
+                height: 50.0,
+                point: LatLng(-34.9185, -56.154), //
+                builder: (ctx) => Container(
+                  child: MapMarker(
+                    localID: "1",
+                    typeIcon: Icons.restaurant,
+                    timeValue: "45m",
+                    priceValue: "275",
+                    starValue: "4",
+                  ),
+                ),
+              ),
+              Marker(
+                width: 60.0,
+                height: 50.0,
+                point: LatLng(-34.919, -56.165), //
+                builder: (ctx) => Container(
+                  child: MapMarker(
+                    localID: "1",
+                    typeIcon: Icons.local_pizza,
+                    timeValue: "45m",
+                    priceValue: "275",
+                    starValue: "4",
+                  ),
+                ),
+              ),
+              Marker(
+                width: 60.0,
+                height: 50.0,
+                point: LatLng(-34.923, -56.162), //
+                builder: (ctx) => Container(
+                  child: MapMarker(
+                    localID: "1",
+                    typeIcon: Icons.cake,
+                    timeValue: "30m",
+                    priceValue: "200",
+                    starValue: "5",
+                  ),
                 ),
               ),
             ],
