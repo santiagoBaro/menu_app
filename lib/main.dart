@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menuapp/pages/explore_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,10 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Explore',
-      style: optionStyle,
-    ),
+    ExplorePage(),
     Text(
       'Index 1: Search',
       style: optionStyle,
