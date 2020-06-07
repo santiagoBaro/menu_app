@@ -56,6 +56,7 @@ class RecomendedCarrousellElement extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
+                  Container(width: 2),
                   Container(
                     height: 30,
                     width: 1,
@@ -74,6 +75,7 @@ class RecomendedCarrousellElement extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
+                  Container(width: 2),
                   Container(
                     height: 30,
                     width: 1,
