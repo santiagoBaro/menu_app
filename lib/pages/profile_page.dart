@@ -14,10 +14,10 @@ class ProfilePage extends StatelessWidget {
           ProfileHeader(),
           Container(height: 20),
           LocalCarrousel(
-            title: "Lugares Pendientes",
+            title: "Pending",
           ),
           LocalCarrousel(
-            title: "Vistos Recientemente",
+            title: "Recently Viewed",
           ),
           LocalReview(),
           LocalReview(),

@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Search'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star_border),
+            icon: Icon(Icons.star),
             title: Text('Recomended'),
           ),
           BottomNavigationBarItem(

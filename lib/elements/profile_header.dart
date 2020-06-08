@@ -6,6 +6,7 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      //* BACKGROUND
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomRight: Radius.circular(20.0),
@@ -30,6 +31,7 @@ class ProfileHeader extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             CircleAvatar(
+              //* USER'S IMAGE
               radius: 60,
               backgroundColor: Colors.white24,
             ),
@@ -39,37 +41,36 @@ class ProfileHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    //* USER'S NAME
                     "John Cena",
                     style: userNameTextStyle,
                   ),
-                  Text("food critique"),
+                  Text(
+                    //* USER'S TITLE
+                    "food critique",
+                    style: TextStyle(
+                      color: Colors.black54,
+                    ),
+                  ),
                   Container(
                     height: 10,
                   ),
                   Row(
+                    //* USERS VALUE
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text("rateings"),
-                      Text("avarege"),
-                      Text("pending"),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        "45",
-                        style: userValuesTextStyle,
+                      UsersValuesTag(
+                        title: "rateings",
+                        value: "45",
                       ),
-                      Text(
-                        "4",
-                        style: userValuesTextStyle,
+                      UsersValuesTag(
+                        title: "avarege",
+                        value: "4",
                       ),
-                      Text(
-                        "8",
-                        style: userValuesTextStyle,
+                      UsersValuesTag(
+                        title: "pending",
+                        value: "8",
                       ),
                     ],
                   ),
@@ -78,6 +79,27 @@ class ProfileHeader extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class UsersValuesTag extends StatelessWidget {
+  final String title;
+  final String value;
+  const UsersValuesTag({Key key, this.title, this.value}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text(title),
+          Text(
+            value,
+            style: userValuesTextStyle,
+          ),
+        ],
       ),
     );
   }

@@ -10,6 +10,7 @@ class LocalReview extends StatelessWidget {
       child: Row(
         children: [
           Container(
+            //* LOCAL'S IMAGE
             height: 100,
             width: 100,
             color: Colors.redAccent,
@@ -20,10 +21,12 @@ class LocalReview extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
+                    //* LOCALS NAME
                     "sit est non",
                     style: titleTextStyle,
                   ),
                   Text(
+                      //* USER'S COMMENT
                       "Unde itaque sit optio ad magni pariatur. Ut ex et delectus. Tempora deserunt omnis ducimus saepe ad iure. Nihil expedita quae aut labore est.")
                 ],
               ),

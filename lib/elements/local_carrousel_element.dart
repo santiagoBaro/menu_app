@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
-class RecomendedCarrousellElement extends StatelessWidget {
-  // final String timeValue;
-  // final String starValue;
-  // final String priceValue;
-  // final IconData typeIcon;
-  const RecomendedCarrousellElement({Key key}) : super(key: key);
+class LocalCarrousellElement extends StatelessWidget {
+  const LocalCarrousellElement({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      //* CARROUSELL CARD
       height: 120,
       width: 150,
       margin: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 15),
@@ -28,9 +25,11 @@ class RecomendedCarrousellElement extends StatelessWidget {
       child: Column(
         children: [
           Container(
+            //* CARD IMAGE
             height: 80,
           ),
           Container(
+            //* CARD'S FOOTER
             height: 40,
             decoration: BoxDecoration(
               color: Colors.redAccent,
@@ -43,11 +42,13 @@ class RecomendedCarrousellElement extends StatelessWidget {
               children: [
                 Container(width: 2),
                 Icon(
+                  //* RATEING'S ICON
                   Icons.star,
                   color: Colors.yellow,
                   size: 16,
                 ),
                 Text(
+                  //* RATEINGS VALUE
                   // shows the avarage rateing
                   "4",
                   style: TextStyle(
@@ -57,16 +58,19 @@ class RecomendedCarrousellElement extends StatelessWidget {
                 ),
                 Container(width: 2),
                 Container(
+                  //* FIRST SEPARATOR
                   height: 30,
                   width: 1,
                   color: Colors.black12,
                 ),
                 Icon(
+                  //* DURATION'S ICON
                   Icons.timer,
                   color: Colors.yellow,
                   size: 16,
                 ),
                 Text(
+                  //* DURATION'S VALUE
                   // shows the avarage customar stay
                   "1h",
                   style: TextStyle(
@@ -76,16 +80,19 @@ class RecomendedCarrousellElement extends StatelessWidget {
                 ),
                 Container(width: 2),
                 Container(
+                  //* SECOND SEPARATOR
                   height: 30,
                   width: 1,
                   color: Colors.black12,
                 ),
                 Icon(
+                  //* PRICE ICON
                   Icons.attach_money,
                   color: Colors.yellow,
                   size: 16,
                 ),
                 Text(
+                  //* PRICE VALUE
                   // shows the locals avarage cost per person
                   "450",
                   style: TextStyle(

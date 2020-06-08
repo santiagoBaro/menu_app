@@ -16,11 +16,13 @@ class _ExplorePageState extends State<ExplorePage> {
     return SafeArea(
       child: FlutterMap(
         options: MapOptions(
+          //* MAPS INITIAL LOCATION ADN ZOOM
           center: LatLng(-34.92, -56.157),
           zoom: 15.0,
         ),
         layers: [
           TileLayerOptions(
+            //* MAPBOX API
             urlTemplate:
                 "https://api.mapbox.com/styles/v1/santiagobaro/ckb0x78li0kph1iqcx27d4qhx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2FudGlhZ29iYXJvIiwiYSI6ImNrYXp0OGp1dzAxb2oyenBtd2Z6dGgxamUifQ.bpQmu_H15SfrR8pNhpTAAA",
             additionalOptions: {
@@ -30,6 +32,7 @@ class _ExplorePageState extends State<ExplorePage> {
             },
           ),
           MarkerLayerOptions(
+            //* LIST OF MARKERS
             markers: [
               Marker(
                 width: 60.0,

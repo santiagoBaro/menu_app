@@ -11,6 +11,7 @@ class RecomendedPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
+              //* BANNER
               height: 200,
               margin: EdgeInsets.only(left: 30, top: 30, right: 30, bottom: 50),
               decoration: BoxDecoration(
@@ -30,11 +31,12 @@ class RecomendedPage extends StatelessWidget {
                 ],
               ),
             ),
+            //! PLACEHOLDER CARROUSELLS
             LocalCarrousel(
-              title: "Tus recomendados",
+              title: "our recomendations for you",
             ),
             LocalCarrousel(
-              title: "Comida rapida",
+              title: "fast food",
             ),
             LocalCarrousel(
               title: "Pasta",
@@ -43,7 +45,7 @@ class RecomendedPage extends StatelessWidget {
               title: "Pizza",
             ),
             LocalCarrousel(
-              title: "Salida romantica",
+              title: "romantic night-out",
             ),
           ],
         ),

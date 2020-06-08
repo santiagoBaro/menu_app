@@ -31,6 +31,7 @@ class MapMarker extends StatelessWidget {
               children: [
                 Container(height: 5),
                 Icon(
+                  //* ICON
                   // shows what type of establishment the local is
                   typeIcon,
                   color: Colors.yellow,
@@ -46,11 +47,13 @@ class MapMarker extends StatelessWidget {
                   children: [
                     Container(width: 1),
                     Icon(
+                      //* RATEING ICON
                       Icons.star,
                       color: Colors.yellow,
                       size: 7,
                     ),
                     Text(
+                      //* RATEING VALUE
                       // shows the avarage rateing
                       starValue,
                       style: TextStyle(
@@ -59,11 +62,13 @@ class MapMarker extends StatelessWidget {
                       ),
                     ),
                     Icon(
+                      //* DURATION ICON
                       Icons.timer,
                       color: Colors.yellow,
                       size: 7,
                     ),
                     Text(
+                      //* DURATION ICON
                       // shows the avarage customar stay
                       timeValue,
                       style: TextStyle(
@@ -72,11 +77,13 @@ class MapMarker extends StatelessWidget {
                       ),
                     ),
                     Icon(
+                      //* PRICE ICON
                       Icons.attach_money,
                       color: Colors.yellow,
                       size: 7,
                     ),
                     Text(
+                      //* PRICE VALUE
                       // shows the locals avarage cost per person
                       priceValue,
                       style: TextStyle(

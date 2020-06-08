@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:menuapp/elements/recomended_carrousel_element.dart';
+import 'local_carrousel_element.dart';
 
 class LocalCarrousel extends StatelessWidget {
   final String title;
@@ -11,6 +11,7 @@ class LocalCarrousel extends StatelessWidget {
       child: Column(
         children: [
           Text(
+            //* TITLE
             title,
             textAlign: TextAlign.left,
             style: TextStyle(
@@ -18,14 +19,15 @@ class LocalCarrousel extends StatelessWidget {
             ),
           ),
           SingleChildScrollView(
+            //* LIST OF LOCALS
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                RecomendedCarrousellElement(),
-                RecomendedCarrousellElement(),
-                RecomendedCarrousellElement(),
-                RecomendedCarrousellElement(),
-                RecomendedCarrousellElement(),
+                LocalCarrousellElement(),
+                LocalCarrousellElement(),
+                LocalCarrousellElement(),
+                LocalCarrousellElement(),
+                LocalCarrousellElement(),
               ],
             ),
           ),
