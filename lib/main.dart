@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:menuapp/pages/explore_page.dart';
+import 'package:menuapp/pages/profile_page.dart';
 import 'package:menuapp/pages/recomended_page.dart';
 import 'package:menuapp/pages/search_page.dart';
 
@@ -40,10 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ExplorePage(),
     SearchPage(),
     RecomendedPage(),
-    Text(
-      'Index 3: Profile',
-      style: optionStyle,
-    ),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
