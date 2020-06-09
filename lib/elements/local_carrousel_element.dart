@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LocalCarrousellElement extends StatelessWidget {
-  const LocalCarrousellElement({Key key}) : super(key: key);
+  final double rateing;
+  final double duration;
+  final String price;
+  const LocalCarrousellElement({
+    Key key,
+    @required this.rateing,
+    @required this.duration,
+    @required this.price,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +17,7 @@ class LocalCarrousellElement extends StatelessWidget {
       //* CARROUSELL CARD
       height: 120,
       width: 150,
-      margin: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 15),
+      margin: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -50,7 +58,7 @@ class LocalCarrousellElement extends StatelessWidget {
                 Text(
                   //* RATEINGS VALUE
                   // shows the avarage rateing
-                  "4",
+                  rateing.toString(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
@@ -72,7 +80,7 @@ class LocalCarrousellElement extends StatelessWidget {
                 Text(
                   //* DURATION'S VALUE
                   // shows the avarage customar stay
-                  "1h",
+                  "${duration}h",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
@@ -94,7 +102,7 @@ class LocalCarrousellElement extends StatelessWidget {
                 Text(
                   //* PRICE VALUE
                   // shows the locals avarage cost per person
-                  "450",
+                  price,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

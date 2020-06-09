@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({Key key}) : super(key: key);
+  final String name;
+  final String title;
+  final String imageurl;
+  final int amountOfRateings;
+  final int averageRateingValue;
+  final int pendingLocals;
+  const ProfileHeader({
+    Key key,
+    @required this.name,
+    @required this.title,
+    @required this.imageurl,
+    @required this.amountOfRateings,
+    @required this.averageRateingValue,
+    @required this.pendingLocals,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +56,13 @@ class ProfileHeader extends StatelessWidget {
                 children: [
                   Text(
                     //* USER'S NAME
-                    "John Cena",
+                    name,
                     style: userNameTextStyle,
                   ),
                   Text(
                     //* USER'S TITLE
-                    "food critique",
-                    style: TextStyle(
-                      color: Colors.black54,
-                    ),
+                    title,
+                    style: userTitleTextStyle,
                   ),
                   Container(
                     height: 10,
@@ -62,15 +74,15 @@ class ProfileHeader extends StatelessWidget {
                     children: [
                       UsersValuesTag(
                         title: "rateings",
-                        value: "45",
+                        value: amountOfRateings.toString(),
                       ),
                       UsersValuesTag(
                         title: "avarege",
-                        value: "4",
+                        value: averageRateingValue.toString(),
                       ),
                       UsersValuesTag(
                         title: "pending",
-                        value: "8",
+                        value: pendingLocals.toString(),
                       ),
                     ],
                   ),
@@ -109,10 +121,17 @@ TextStyle userNameTextStyle = TextStyle(
   fontSize: 30,
   color: Colors.yellowAccent,
   fontWeight: FontWeight.bold,
+  shadows: <Shadow>[
+    Shadow(
+      offset: Offset(3.0, 3.0),
+      blurRadius: 8.0,
+      color: Colors.black45,
+    ),
+  ],
 );
 
 TextStyle userTitleTextStyle = TextStyle(
-  color: Colors.black54,
+  color: Colors.white60,
   fontWeight: FontWeight.bold,
 );
 

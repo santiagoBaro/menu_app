@@ -11,7 +11,14 @@ class ProfilePage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ProfileHeader(),
+          ProfileHeader(
+            name: "John Cena",
+            title: "food critique",
+            imageurl: "",
+            amountOfRateings: 45,
+            averageRateingValue: 4,
+            pendingLocals: 5,
+          ),
           Container(height: 20),
           LocalCarrousel(
             title: "Pending",
@@ -19,10 +26,30 @@ class ProfilePage extends StatelessWidget {
           LocalCarrousel(
             title: "Recently Viewed",
           ),
-          LocalReview(),
-          LocalReview(),
-          LocalReview(),
-          LocalReview(),
+          LocalReview(
+            localImageUrl: "",
+            localName: "ea qui libero",
+            usersReview:
+                "Quaerat veniam dolorem est temporibus eos. Dolorem sed neque fugit voluptatum animi eveniet voluptates. Ut quam quasi et. Deserunt aspernatur et laboriosam. Harum unde explicabo vel repudiandae inventore aut.",
+          ),
+          LocalReview(
+            localImageUrl: "",
+            localName: "est dolorem illo",
+            usersReview:
+                "Aut quis quae qui necessitatibus est non aut. Qui magnam molestiae nulla aut magni mollitia eos est. Dolor delectus sint iste ut. Consequatur omnis minima molestiae praesentium ut sunt nisi consequuntur ut. Exercitationem distinctio ea.",
+          ),
+          LocalReview(
+            localImageUrl: "",
+            localName: "eos ducimus labore",
+            usersReview:
+                "Magnam nobis ipsa libero perspiciatis facilis quaerat assumenda earum.",
+          ),
+          LocalReview(
+            localImageUrl: "",
+            localName: "magni sint blanditiis",
+            usersReview:
+                "Ipsum veritatis inventore doloremque ad tenetur sit. Consectetur nulla doloribus hic. Omnis praesentium non a. In ut officiis deleniti velit modi nisi. Exercitationem fugiat nobis.",
+          ),
         ],
       ),
     );

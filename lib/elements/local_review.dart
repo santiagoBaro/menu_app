@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
 class LocalReview extends StatelessWidget {
-  const LocalReview({Key key}) : super(key: key);
+  final String localImageUrl;
+  final String localName;
+  final String usersReview;
+  const LocalReview({
+    Key key,
+    @required this.localImageUrl,
+    @required this.localName,
+    @required this.usersReview,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
       child: Row(
         children: [
           Container(
@@ -19,15 +27,20 @@ class LocalReview extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     //* LOCALS NAME
-                    "sit est non",
+                    localName,
                     style: titleTextStyle,
                   ),
+                  Container(
+                    height: 10,
+                  ),
                   Text(
-                      //* USER'S COMMENT
-                      "Unde itaque sit optio ad magni pariatur. Ut ex et delectus. Tempora deserunt omnis ducimus saepe ad iure. Nihil expedita quae aut labore est.")
+                    //* USER'S COMMENT
+                    usersReview,
+                  )
                 ],
               ),
             ),
