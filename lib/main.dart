@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:menuapp/pages/explore_page.dart';
+import 'package:menuapp/pages/onboarding_page.dart';
 import 'package:menuapp/pages/profile_page.dart';
 import 'package:menuapp/pages/recomended_page.dart';
 import 'package:menuapp/pages/search_page.dart';
+import 'package:menuapp/pages/tabbed_landing_page.dart';
+import 'package:menuapp/pages/tabbed_login_page.dart';
 
-void main() {
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:menuapp/bloc/bloc/bloc/persisted_bloc.dart';
+import 'package:menuapp/bloc/bloc/bloc/persisted_state.dart';
+
+import 'bloc/bloc/bloc/persisted_bloc.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
   runApp(MyApp());
 }
 
@@ -15,11 +29,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // is not restarted.
+        fontFamily: 'AvenirNextLTPro',
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: AppsBuilder(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -83,5 +98,71 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: _onItemTapped,
       ),
     );
+  }
+}
+
+class AppsBuilder extends StatelessWidget {
+  const AppsBuilder({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BlocProvider(
+        builder: (context) => PersistedBloc(),
+        child: Container(
+          child: BlocBuilder<PersistedBloc, PersistedState>(
+            builder: (BuildContext context, PersistedState state) {
+              if (state is InitialState) {
+                //
+                return buildOnboardingPage();
+              } else if (state is LoadingState) {
+                //
+                return buildLoading();
+              } else if (state is LogedState) {
+                //
+                return buildTabbedLandingPage();
+              } else if (state is NotLogedState) {
+                //
+                return buildLoginPage();
+              } else if (state is RegistrateringState) {
+                //
+                return buildLoginPage();
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildOnboardingPage() {
+    return OnboardingPage();
+  }
+
+  Widget buildLoading() {
+    return Column(
+      children: <Widget>[
+        Text(
+          'Getting your information',
+          style: TextStyle(
+            fontSize: 40,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        CircularProgressIndicator(),
+      ],
+      mainAxisAlignment: MainAxisAlignment.center,
+    );
+  }
+
+  Widget buildTabbedLandingPage() {
+    return TabbedLandingPage();
+  }
+
+  Widget buildLoginPage() {
+    return TabbedLoginPage();
   }
 }

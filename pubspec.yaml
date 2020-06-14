@@ -30,6 +30,10 @@ dependencies:
   flutter_map: ^0.9.0
   flappy_search_bar: 1.4.1
   latlong: ^0.6.1
+  hydrated_bloc: ^0.4.0
+  flutter_bloc: ^0.21.0
+  equatable: ^0.5.1
+  json_annotation: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +52,10 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+
+  assets:
+    - assets/images/
+    - assets/fonts/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
@@ -71,3 +79,15 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: AvenirNextLTPro
+      fonts:
+        - asset: assets/fonts/AvenirNextLTPro-Bold.otf
+          weight: 700
+        - asset: assets/fonts/AvenirNextLTPro-It.otf
+          style: italic
+        - asset: assets/fonts/AvenirNextLTPro-Regular.otf
+
+    - family: PermanentMarker
+      fonts:
+        - asset: assets/fonts/PermanentMarker-Regular.ttf
