@@ -27,7 +27,7 @@ TextStyle primaryMessageTextStyle = TextStyle(
 );
 
 TextStyle onboardingTextStyle = TextStyle(
-  fontFamily: 'PermanentMarker',
+  fontFamily: 'BerkshireSwash-Regular',
   fontSize: 30,
   shadows: [
     textShadow,

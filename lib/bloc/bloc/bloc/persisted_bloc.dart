@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'persisted_event.dart';
 import 'persisted_state.dart';
 
@@ -40,6 +39,7 @@ class PersistedBloc extends HydratedBloc<PersistedEvent, PersistedState> {
       // final state = User.fromJson(json);
       // return LogedState(state, lightTheme);
       //return LogedState(state, darkTheme);
+      return null;
     } catch (e) {
       print(e.toString());
       return null;
@@ -50,6 +50,7 @@ class PersistedBloc extends HydratedBloc<PersistedEvent, PersistedState> {
   Map<String, dynamic> toJson(PersistedState state) {
     if (state is LogedState) {
       //return state.user.toJson();
+      return null;
     } else {
       return null;
     }

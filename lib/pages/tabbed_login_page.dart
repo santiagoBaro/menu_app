@@ -6,7 +6,7 @@ import 'package:menuapp/tools/visual_assets.dart';
 
 class TabbedLoginPage extends StatefulWidget {
   TabbedLoginPage({Key key, this.initialIndex}) : super(key: key);
-  int initialIndex;
+  final int initialIndex;
 
   @override
   _TabbedLoginPageState createState() => _TabbedLoginPageState();

@@ -21,7 +21,7 @@ class LocalReview extends StatelessWidget {
             //* LOCAL'S IMAGE
             height: 100,
             width: 100,
-            color: Colors.redAccent,
+            color: Colors.black12,
           ),
           Expanded(
             child: Padding(

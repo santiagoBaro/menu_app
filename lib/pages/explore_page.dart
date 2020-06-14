@@ -33,6 +33,7 @@ class _ExplorePageState extends State<ExplorePage> {
           ),
           MarkerLayerOptions(
             //* LIST OF MARKERS
+            // TODO: fix marker location bug, center
             markers: [
               Marker(
                 width: 60.0,

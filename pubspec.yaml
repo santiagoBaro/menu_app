@@ -88,6 +88,10 @@ flutter:
           style: italic
         - asset: assets/fonts/AvenirNextLTPro-Regular.otf
 
+    - family: BerkshireSwash-Regular
+      fonts:
+        - asset: assets/fonts/BerkshireSwash-Regular.ttf
+
     - family: PermanentMarker
       fonts:
         - asset: assets/fonts/PermanentMarker-Regular.ttf

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:menuapp/pages/explore_page.dart';
 import 'package:menuapp/pages/onboarding_page.dart';
 import 'package:menuapp/pages/profile_page.dart';
@@ -50,8 +49,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static List<Widget> _widgetOptions = <Widget>[
     ExplorePage(),
     SearchPage(),

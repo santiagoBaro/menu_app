@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menuapp/tools/visual_assets.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String name;
@@ -34,7 +35,12 @@ class ProfileHeader extends StatelessWidget {
             offset: Offset(0, 3), // changes position of shadow
           ),
         ],
-        color: Colors.redAccent,
+        gradient: LinearGradient(
+          colors: hotSand,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        //color: Colors.redAccent,
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
