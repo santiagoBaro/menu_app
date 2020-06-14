@@ -96,7 +96,7 @@ class MapMarker extends StatelessWidget {
                 ),
               ],
             ),
-            width: 55,
+            width: 57,
             height: 38,
           ),
         ),
