@@ -1,10 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_bloc.dart';
-
-import 'package:menuapp/bloc/bloc/bloc/persisted_event.dart';
 import 'package:menuapp/tools/visual_assets.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -156,8 +152,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                 color: myAppTheme['AccentColor'],
                                 textColor: myAppTheme['HighlightTextColor'],
                                 onPressed: () {
-                                  BlocProvider.of<PersistedBloc>(context)
-                                      .dispatch(SigningUpEvent());
+                                  // BlocProvider.of<PersistedBloc>(context)
+                                  //     .dispatch(SigningUpEvent());
                                 },
                               ),
                             ),
@@ -204,8 +200,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       style: onboardingMessageTextStyle,
                     ),
                     onPressed: () {
-                      BlocProvider.of<PersistedBloc>(context)
-                          .dispatch(LoginInEvent());
+                      // BlocProvider.of<PersistedBloc>(context)
+                      //     .dispatch(LoginInEvent());
                     },
                   ),
                 ],

@@ -33,9 +33,9 @@ class _ExplorePageState extends State<ExplorePage> {
           ),
           MarkerLayerOptions(
             //* LIST OF MARKERS
-            // TODO: fix marker location bug, center
             markers: [
               Marker(
+                anchorPos: AnchorPos.align(AnchorAlign.bottom),
                 width: 60.0,
                 height: 50.0,
                 point: LatLng(-34.9195, -56.157),
@@ -50,6 +50,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
               Marker(
+                anchorPos: AnchorPos.align(AnchorAlign.bottom),
                 width: 60.0,
                 height: 50.0,
                 point: LatLng(-34.9185, -56.154), //
@@ -64,6 +65,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
               Marker(
+                anchorPos: AnchorPos.align(AnchorAlign.bottom),
                 width: 60.0,
                 height: 50.0,
                 point: LatLng(-34.919, -56.165), //
@@ -78,6 +80,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
               Marker(
+                anchorPos: AnchorPos.align(AnchorAlign.bottom),
                 width: 60.0,
                 height: 50.0,
                 point: LatLng(-34.923, -56.162), //

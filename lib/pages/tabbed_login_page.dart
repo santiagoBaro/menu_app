@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_event.dart';
 import 'package:menuapp/tools/visual_assets.dart';
 
 class TabbedLoginPage extends StatefulWidget {
@@ -177,11 +174,11 @@ class LoginTab extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     textColor: myAppTheme['PrimaryActionButtonColor'],
                     onPressed: () {
-                      if (_loginFormKey.currentState.validate()) {
-                        BlocProvider.of<PersistedBloc>(context).dispatch(
-                          LogInEvent(),
-                        );
-                      }
+                      // if (_loginFormKey.currentState.validate()) {
+                      //   BlocProvider.of<PersistedBloc>(context).dispatch(
+                      //     LogInEvent(),
+                      //   );
+                      // }
                     },
                   ),
                 ],
@@ -348,9 +345,9 @@ class SignUpTab extends StatelessWidget {
                       textColor: myAppTheme['PrimaryActionButtonColor'],
                       onPressed: () {
                         if (_signupFormKey.currentState.validate()) {
-                          BlocProvider.of<PersistedBloc>(context).dispatch(
-                            SigunUpEvent(),
-                          );
+                          // BlocProvider.of<PersistedBloc>(context).dispatch(
+                          //   SigunUpEvent(),
+                          // );
                         }
                       },
                     ),

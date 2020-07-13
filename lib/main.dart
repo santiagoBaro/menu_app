@@ -7,17 +7,7 @@ import 'package:menuapp/pages/search_page.dart';
 import 'package:menuapp/pages/tabbed_landing_page.dart';
 import 'package:menuapp/pages/tabbed_login_page.dart';
 
-import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_state.dart';
-
-import 'bloc/bloc/bloc/persisted_bloc.dart';
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
   runApp(MyApp());
 }
 
@@ -32,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AppsBuilder(),
+      home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -105,31 +95,32 @@ class AppsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        builder: (context) => PersistedBloc(),
-        child: Container(
-          child: BlocBuilder<PersistedBloc, PersistedState>(
-            builder: (BuildContext context, PersistedState state) {
-              if (state is InitialState) {
-                //
-                return buildOnboardingPage();
-              } else if (state is LoadingState) {
-                //
-                return buildLoading();
-              } else if (state is LogedState) {
-                //
-                return buildTabbedLandingPage();
-              } else if (state is NotLogedState) {
-                //
-                return buildLoginPage();
-              } else if (state is RegistrateringState) {
-                //
-                return buildLoginPage();
-              }
-            },
-          ),
-        ),
-      ),
+      body: TabbedLandingPage(),
+      // body: BlocProvider(
+      //   builder: (context) => PersistedBloc(),
+      //   child: Container(
+      //     child: BlocBuilder<PersistedBloc, PersistedState>(
+      //       builder: (BuildContext context, PersistedState state) {
+      //         if (state is InitialState) {
+      //           //
+      //           return buildOnboardingPage();
+      //         } else if (state is LoadingState) {
+      //           //
+      //           return buildLoading();
+      //         } else if (state is LogedState) {
+      //           //
+      //           return buildTabbedLandingPage();
+      //         } else if (state is NotLogedState) {
+      //           //
+      //           return buildLoginPage();
+      //         } else if (state is RegistrateringState) {
+      //           //
+      //           return buildLoginPage();
+      //         }
+      //       },
+      //     ),
+      //   ),
+      // ),
     );
   }
 
