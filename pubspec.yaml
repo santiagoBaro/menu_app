@@ -33,6 +33,7 @@ dependencies:
   latlong: ^0.6.1
   equatable: ^1.2.2
   flutter_flux: ^4.1.3
+  flutter_image_compress: ^0.7.0
   json_annotation: ^3.0.0
 
 dev_dependencies:

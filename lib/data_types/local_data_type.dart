@@ -33,6 +33,7 @@ class Local {
   final local_types type;
   final Float ranking;
   final String time;
+  final List<String> chips;
   final Float serviceRateing;
   final String bannerImage;
   final Float foodRateing;
@@ -46,6 +47,7 @@ class Local {
     this.lat,
     this.lng,
     this.type,
+    this.chips,
     this.ranking,
     this.time,
     this.serviceRateing,
@@ -63,6 +65,7 @@ class Local {
         lng = json['lng'],
         type = json['type'],
         ranking = json['ranking'],
+        chips = json['chips'],
         time = json['time'],
         serviceRateing = json['service_rateing'],
         bannerImage = json['banner_image'],
