@@ -35,7 +35,7 @@ class _ExplorePageState extends State<ExplorePage> {
             //* LIST OF MARKERS
             markers: [
               Marker(
-                anchorPos: AnchorPos.align(AnchorAlign.bottom),
+                anchorPos: AnchorPos.align(AnchorAlign.top),
                 width: 60.0,
                 height: 50.0,
                 point: LatLng(-34.9195, -56.157),
@@ -50,7 +50,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
               Marker(
-                anchorPos: AnchorPos.align(AnchorAlign.bottom),
+                anchorPos: AnchorPos.align(AnchorAlign.top),
                 width: 60.0,
                 height: 50.0,
                 point: LatLng(-34.9185, -56.154), //
@@ -65,7 +65,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
               Marker(
-                anchorPos: AnchorPos.align(AnchorAlign.bottom),
+                anchorPos: AnchorPos.align(AnchorAlign.top),
                 width: 60.0,
                 height: 50.0,
                 point: LatLng(-34.919, -56.165), //
@@ -80,7 +80,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
               Marker(
-                anchorPos: AnchorPos.align(AnchorAlign.bottom),
+                anchorPos: AnchorPos.align(AnchorAlign.top),
                 width: 60.0,
                 height: 50.0,
                 point: LatLng(-34.923, -56.162), //

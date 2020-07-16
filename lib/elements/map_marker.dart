@@ -42,10 +42,6 @@ class MapMarker extends StatelessWidget {
                     size: 20,
                   ),
                   Container(height: 3),
-                  //fastfood
-                  //restaurant
-                  //cake
-                  //local_pizza
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
