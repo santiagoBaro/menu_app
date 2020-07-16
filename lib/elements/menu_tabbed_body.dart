@@ -59,12 +59,13 @@ class _MenuTabbedBodyState extends State<MenuTabbedBody>
               controller: _nestedTabController,
               children: <Widget>[
                 Container(
-                  // FIRST TAB PAGE
+                  //* FIRST TAB PAGE
+                  //* MENU
                   child: MenuTab(),
                 ),
                 Container(
-                  // SECOND TAB PAGE
-                  color: Colors.green[100],
+                  //* SECOND TAB PAGE
+                  //* AVAILABILITY
                   child: AvailabilityTab(),
                 ),
               ],

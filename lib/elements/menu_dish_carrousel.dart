@@ -45,6 +45,7 @@ class MenuDishCarrouselElement extends StatelessWidget {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             //* IMAGE
@@ -63,11 +64,32 @@ class MenuDishCarrouselElement extends StatelessWidget {
             ),
           ),
           //* TITLE
-          Text(
-            "voluptatum sequi",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+            child: Text(
+              "voluptatum sequi",
+              style: titleTextStyle,
+            ),
+          ),
+          //* TITLE
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              "\$ 450",
+              style: priceTextStyle,
+            ),
           ),
         ],
       ),
     );
   }
 }
+
+TextStyle titleTextStyle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle priceTextStyle = TextStyle(
+  fontSize: 16,
+);
