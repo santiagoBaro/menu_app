@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'menu_dish_carrousel.dart';
+import 'menu_dish_gouped.dart';
+
 class MenuTab extends StatefulWidget {
   MenuTab({Key key}) : super(key: key);
 
@@ -10,8 +13,15 @@ class MenuTab extends StatefulWidget {
 class _MenuTabState extends State<MenuTab> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        //child: child,
-        );
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          MenuDishCarrousel(),
+          MenuDishGrouped(),
+          MenuDishGrouped(),
+          MenuDishGrouped(),
+        ],
+      ),
+    );
   }
 }

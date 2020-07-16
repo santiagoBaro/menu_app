@@ -30,50 +30,47 @@ class _MenuTabbedBodyState extends State<MenuTabbedBody>
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            //* NESTED TAB BAR
-            TabBar(
+      child: Column(
+        children: [
+          //* NESTED TAB BAR
+          TabBar(
+            controller: _nestedTabController,
+            indicatorColor: Colors.redAccent,
+            labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            labelColor: Colors.redAccent,
+            unselectedLabelColor: Colors.black54,
+            isScrollable: false,
+            tabs: <Widget>[
+              Tab(
+                text: "Menu",
+              ),
+              Tab(
+                text: "Availability",
+              ),
+            ],
+          ),
+          Container(
+            //* THIS CONTAINER IS WHERE THE TAB DISPLAYS ITS PAGES
+            //TODO check height for different devices
+            height: MediaQuery.of(context).size.height - 40 - 210.4,
+            width: MediaQuery.of(context).size.width - 50,
+            //margin: EdgeInsets.only(left: 16.0, right: 16.0),
+            child: TabBarView(
               controller: _nestedTabController,
-              indicatorColor: Colors.redAccent,
-              labelColor: Colors.redAccent,
-              unselectedLabelColor: Colors.black,
-              isScrollable: true,
-              tabs: <Widget>[
-                Tab(
-                  text: "Menu",
+              children: <Widget>[
+                Container(
+                  // FIRST TAB PAGE
+                  child: MenuTab(),
                 ),
-                Tab(
-                  text: "Availability",
+                Container(
+                  // SECOND TAB PAGE
+                  color: Colors.green[100],
+                  child: AvailabilityTab(),
                 ),
               ],
             ),
-            Container(
-              //* THIS CONTAINER IS WHERE THE TAB DISPLAYS ITS PAGES
-              color: Colors.yellow,
-              //TODO check height for different devices
-              height: MediaQuery.of(context).size.height - 40 - 210.4,
-              width: MediaQuery.of(context).size.width - 50,
-              //margin: EdgeInsets.only(left: 16.0, right: 16.0),
-              child: TabBarView(
-                controller: _nestedTabController,
-                children: <Widget>[
-                  Container(
-                    // FIRST TAB PAGE
-                    color: Colors.blue,
-                    child: MenuTab(),
-                  ),
-                  Container(
-                    // SECOND TAB PAGE
-                    color: Colors.green,
-                    child: AvailabilityTab(),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

@@ -143,7 +143,7 @@ funcMarkerTapped(BuildContext context) {
                     child: Image.network(
                         'https://user-images.githubusercontent.com/37426199/87575121-d2659e80-c6a5-11ea-86cc-8284ab1956ea.png'),
                   ),
-                  //* MENU
+                  //* MENU BODY
                   Container(
                     child: MenuTabbedBody(),
                   ),
