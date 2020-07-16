@@ -126,41 +126,74 @@ funcMarkerTapped(BuildContext context) {
       builder: (BuildContext context) {
         return AlertDialog(
           contentPadding: EdgeInsets.all(0),
-          content: Stack(
-            overflow: Overflow.visible,
-            children: <Widget>[
-              //* POP-UP BODY
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  //* BANNER IMAGE
-                  Container(
-                    child: Image.network(
-                        'https://user-images.githubusercontent.com/37426199/87575121-d2659e80-c6a5-11ea-86cc-8284ab1956ea.png'),
-                  ),
-                  //* MENU BODY
-                  Container(
-                    child: MenuTabbedBody(),
-                  ),
-                ],
-              ),
-              //* CLOSE ICON
-              Positioned(
-                right: -15.0,
-                top: -15.0,
-                child: InkResponse(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: CircleAvatar(
-                    radius: 15,
-                    child: Icon(Icons.close),
-                    backgroundColor: Colors.redAccent[400],
+          content: Container(
+            constraints: BoxConstraints(maxWidth: 700),
+            child: Stack(
+              overflow: Overflow.visible,
+              children: <Widget>[
+                //* POP-UP BODY
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    //* BANNER IMAGE
+                    Container(
+                      child: Image.network(
+                          'https://user-images.githubusercontent.com/37426199/87575121-d2659e80-c6a5-11ea-86cc-8284ab1956ea.png'),
+                    ),
+                    //* MENU BODY
+                    Container(
+                      child: MenuTabbedBody(),
+                    ),
+                  ],
+                ),
+                //* CLOSE ICON
+                Positioned(
+                  right: 15.0,
+                  top: 15.0,
+                  child: InkResponse(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CircleAvatar(
+                      radius: 15,
+                      child: Icon(Icons.close),
+                      backgroundColor: Colors.redAccent[400],
+                    ),
                   ),
                 ),
-              ),
-            ],
+                //* SAVE BUTTON
+                Positioned(
+                  left: 5.0,
+                  top: 5.0,
+                  child: InkResponse(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CircleAvatar(
+                      radius: 15,
+                      child: Icon(Icons.bookmark_border),
+                      backgroundColor: Colors.black26,
+                    ),
+                  ),
+                ),
+                //* BOOK TABLE BUTTON
+                Positioned(
+                  left: 40.0,
+                  top: 5.0,
+                  child: InkResponse(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CircleAvatar(
+                      radius: 15,
+                      child: Icon(Icons.av_timer),
+                      backgroundColor: Colors.black26,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       });

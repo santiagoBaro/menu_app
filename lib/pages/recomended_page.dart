@@ -7,6 +7,18 @@ class RecomendedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 15,
+            blurRadius: 12,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      constraints: BoxConstraints(maxWidth: 700),
       child: SingleChildScrollView(
         child: Column(
           children: [

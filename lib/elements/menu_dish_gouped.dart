@@ -15,11 +15,13 @@ class MenuDishGrouped extends StatelessWidget {
           style: onboardingTextStyle,
         ),
       ),
+      //* SEPARATOR
       Container(
         height: 1,
         color: Colors.black26,
         margin: EdgeInsets.symmetric(horizontal: 10),
       ),
+      //* DISHES
       MenuDishElement(),
       MenuDishElement(),
       MenuDishElement(),
@@ -44,17 +46,22 @@ class _MenuDishElementState extends State<MenuDishElement> {
         children: [
           Expanded(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
+                  //* NAME
                   "ducimus odit sapiente",
                   style: menuDishTitleTextStyle,
                 ),
                 Text(
+                  //* DESCRIPTION
                   "Inventore rerum minima perferendis ut a laboriosam aliquid asperiores.",
                   style: menuDishTextTextStyle,
                 ),
                 Text(
+                  //* PRICE
                   "\$ 450",
                   style: menuDishPriceTextStyle,
                 ),
@@ -62,11 +69,19 @@ class _MenuDishElementState extends State<MenuDishElement> {
             ),
           ),
           Container(
-            height: 100,
-            width: 100,
-            child: Image.network(
-                'https://www.photoblog.com/learn/wp-content/uploads/2017/07/176A3739a.jpg'),
-          )
+            //* IMAGE
+            height: 125,
+            width: 125,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                  'https://www.photoblog.com/learn/wp-content/uploads/2017/07/176A3739a.jpg',
+                ),
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            ),
+          ),
         ],
       ),
     );

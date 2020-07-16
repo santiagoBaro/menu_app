@@ -31,6 +31,7 @@ class AvailabilityTab extends StatelessWidget {
               color: Colors.black38,
               margin: EdgeInsets.only(bottom: 20),
             ),
+            //* HEADER
             Text(
               "Hours",
               style: onboardingTextStyle,
@@ -40,6 +41,7 @@ class AvailabilityTab extends StatelessWidget {
               color: Colors.black38,
               margin: EdgeInsets.symmetric(vertical: 20),
             ),
+            //* HOURS
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -110,11 +112,13 @@ class AvailabilityTab extends StatelessWidget {
                 Text("Closed"),
               ],
             ),
+            //* END SEPARATOR
             Container(
               height: 1,
               color: Colors.black38,
               margin: EdgeInsets.symmetric(vertical: 20),
             ),
+            //* SPECIAL CASES LIST
             Text(
               "Special cases:",
               style: titleText,
