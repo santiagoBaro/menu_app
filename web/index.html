@@ -16,6 +16,9 @@
 
   <title>menuapp</title>
   <link rel="manifest" href="manifest.json">
+  <!--!  -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js'></script>
+  <!--! -->
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
@@ -28,6 +31,11 @@
       });
     }
   </script>
+  <!--!  -->
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2FudGlhZ29iYXJvIiwiYSI6ImNrYXp0OGp1dzAxb2oyenBtd2Z6dGgxamUifQ.bpQmu_H15SfrR8pNhpTAAA';
+  </script>
+  <!--!  -->
   <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>

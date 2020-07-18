@@ -9,7 +9,9 @@ const String db = "http://localhost:12345/";
 
 class LocalsRepo {
   Future<Stream<Local>> getLocals(int lat, int lng) async {
-    String url = db + lat.toString() + "/" + lng.toString();
+    String endpoint = "GetLocalsGeo/";
+    //TODO hacer logica de lat lng a grupo
+    String url = db + endpoint + lat.toString() + "/" + lng.toString();
 
     var client = http.Client();
     var streamedRes = await client.send(http.Request('get', Uri.parse(url)));
