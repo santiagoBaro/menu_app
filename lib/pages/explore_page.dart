@@ -23,6 +23,7 @@ class _ExplorePageState extends State<ExplorePage> {
         layers: [
           TileLayerOptions(
             //* MAPBOX API
+            tileProvider: NonCachingNetworkTileProvider(),
             urlTemplate:
                 "https://api.mapbox.com/styles/v1/santiagobaro/ckb0x78li0kph1iqcx27d4qhx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2FudGlhZ29iYXJvIiwiYSI6ImNrYXp0OGp1dzAxb2oyenBtd2Z6dGgxamUifQ.bpQmu_H15SfrR8pNhpTAAA",
             additionalOptions: {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:menuapp/pages/explore_page.dart';
-import 'package:menuapp/pages/new_explore_page.dart';
 import 'package:menuapp/pages/onboarding_page.dart';
 import 'package:menuapp/pages/profile_page.dart';
 import 'package:menuapp/pages/recomended_page.dart';
@@ -42,8 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    NewExplorePage(),
-    //ExplorePage(),
+    ExplorePage(),
     SearchPage(),
     RecomendedPage(),
     ProfilePage(),
