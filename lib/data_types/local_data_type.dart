@@ -1,14 +1,10 @@
-import 'dart:ffi';
-
 import 'local_types_enum.dart';
-import 'dart:io';
-import 'dart:convert';
 
 class LocalPointer {
   final String id;
   final String name;
-  final Float lat;
-  final Float lng;
+  final double lat;
+  final double lng;
   final local_types type;
 
   LocalPointer({
@@ -38,15 +34,15 @@ class LocalPointer {
 class Local {
   final String id;
   final String name;
-  final Float lat;
-  final Float lng;
+  final double lat;
+  final double lng;
   final local_types type;
-  final Float ranking;
+  final double ranking;
   final String time;
   final List<String> chips;
-  final Float serviceRateing;
+  final double serviceRateing;
   final String bannerImage;
-  final Float foodRateing;
+  final double foodRateing;
   final int averageCost;
   final String menu;
   final String reviews;

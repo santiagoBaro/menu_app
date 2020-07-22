@@ -37,6 +37,7 @@ class _ExplorePageState extends State<ExplorePage> {
           MarkerLayerOptions(
             //* LIST OF MARKERS
             markers: [
+              //* USER'S LOCATION
               Marker(
                   point: LatLng(-34.92, -56.157),
                   builder: (ctx) => Stack(
@@ -52,7 +53,7 @@ class _ExplorePageState extends State<ExplorePage> {
                             child: Icon(
                               Icons.brightness_1,
                               color: Colors.blueGrey,
-                              size: 20,
+                              size: 18,
                             ),
                           ),
                         ],

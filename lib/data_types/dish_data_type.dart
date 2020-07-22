@@ -1,11 +1,10 @@
-import 'dart:ffi';
 import 'dart:ui';
 
 class Dish {
   final String id;
   final String name;
   final String group;
-  final Float price;
+  final double price;
   final String description;
   final List<Image> images;
 

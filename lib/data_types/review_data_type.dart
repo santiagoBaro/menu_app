@@ -1,10 +1,8 @@
-import 'dart:ffi';
-
 class Review {
   final String id;
   final String userId;
   final String localId;
-  final Float rateing;
+  final double rateing;
   final String comment;
 
   Review({

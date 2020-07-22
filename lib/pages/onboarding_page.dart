@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:menuapp/data_types/data_types_export.dart';
-import 'package:menuapp/main.dart';
 import 'package:menuapp/pages/tabbed_login_page.dart';
 import 'package:menuapp/tools/visual_assets.dart';
 
@@ -72,6 +71,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           children: <Widget>[
                             Center(
                               child: Container(
+                                constraints: BoxConstraints(maxWidth: 500),
                                 child: Padding(
                                   padding: const EdgeInsets.only(bottom: 50.0),
                                   child:
@@ -97,6 +97,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           children: <Widget>[
                             Center(
                               child: Container(
+                                constraints: BoxConstraints(maxWidth: 500),
                                 child: Padding(
                                   padding: const EdgeInsets.only(bottom: 50.0),
                                   child: Image.asset(
@@ -122,8 +123,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           children: <Widget>[
                             Center(
                               child: Container(
+                                constraints: BoxConstraints(maxWidth: 500),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 50.0),
+                                  padding: const EdgeInsets.only(bottom: 100.0),
                                   child: Image.asset(
                                       'assets/images/ice-cream.png'),
                                 ),

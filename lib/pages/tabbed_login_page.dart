@@ -20,7 +20,6 @@ class _TabbedLoginPageState extends State<TabbedLoginPage>
   @override
   void initState() {
     super.initState();
-    final formKey = GlobalKey<FormState>();
     _nestedTabController = new TabController(length: 2, vsync: this);
     _nestedTabController.index = widget.initialIndex;
   }
@@ -41,51 +40,55 @@ class _TabbedLoginPageState extends State<TabbedLoginPage>
         body: Container(
           //* BACKGROUND
           decoration: tabbedLoginHeaderBoxDecoration,
-          child: Column(
-            children: <Widget>[
-              //* TAB BAR
-              Container(
-                width: screenWidth,
-                color: myAppTheme['PrimaryBackgroundColor'],
-                child: TabBar(
-                  controller: _nestedTabController,
-                  indicatorColor: myAppTheme['PrimaryColor'],
-                  labelColor: myAppTheme['AccentTextColor'],
-                  unselectedLabelColor: myAppTheme['SecondaryTextColor'],
-                  isScrollable: true,
-                  tabs: <Widget>[
-                    Tab(
-                      text: "Login",
-                    ),
-                    Tab(
-                      text: "SignUp",
-                    ),
-                  ],
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                //* TAB BAR
+                Container(
+                  constraints: BoxConstraints(maxWidth: 700),
+                  width: screenWidth,
+                  color: myAppTheme['PrimaryBackgroundColor'],
+                  child: TabBar(
+                    controller: _nestedTabController,
+                    indicatorColor: myAppTheme['PrimaryColor'],
+                    labelColor: myAppTheme['AccentTextColor'],
+                    unselectedLabelColor: myAppTheme['SecondaryTextColor'],
+                    isScrollable: true,
+                    tabs: <Widget>[
+                      Tab(
+                        text: "Login",
+                      ),
+                      Tab(
+                        text: "SignUp",
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                //* TAB VIEW
-                // THIS CONTAINER IS WHERE THE TAB DISPLAYS ITS PAGES
-                color: myAppTheme['PrimaryBackgroundColor'],
-                height: screenHeight * 0.5,
-                child: TabBarView(
-                  controller: _nestedTabController,
-                  children: <Widget>[
-                    Container(
-                      //* FIRST TAB PAGE
-                      // LOGIN
-                      child: LoginTab(),
-                    ),
-                    Container(
-                      //* SECOND TAB PAGE
-                      // SIGNUP
-                      child: SignUpTab(),
-                    ),
-                  ],
-                ),
-              )
-            ],
-            mainAxisAlignment: MainAxisAlignment.end,
+                Container(
+                  constraints: BoxConstraints(maxWidth: 700),
+                  //* TAB VIEW
+                  // THIS CONTAINER IS WHERE THE TAB DISPLAYS ITS PAGES
+                  color: myAppTheme['PrimaryBackgroundColor'],
+                  height: screenHeight * 0.5,
+                  child: TabBarView(
+                    controller: _nestedTabController,
+                    children: <Widget>[
+                      Container(
+                        //* FIRST TAB PAGE
+                        // LOGIN
+                        child: LoginTab(),
+                      ),
+                      Container(
+                        //* SECOND TAB PAGE
+                        // SIGNUP
+                        child: SignUpTab(),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.end,
+            ),
           ),
         ),
       ),

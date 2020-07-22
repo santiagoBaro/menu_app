@@ -2,12 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:localstorage/localstorage.dart';
-import 'package:menuapp/pages/explore_page.dart';
 import 'package:menuapp/pages/onboarding_page.dart';
-import 'package:menuapp/pages/profile_page.dart';
-import 'package:menuapp/pages/recomended_page.dart';
-import 'package:menuapp/pages/search_page.dart';
 import 'package:menuapp/pages/tabbed_landing_page.dart';
 import 'package:menuapp/pages/tabbed_login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:menuapp/tools/visual_assets.dart';
 
 class MenuDishCarrousel extends StatelessWidget {
   const MenuDishCarrousel({Key key}) : super(key: key);
