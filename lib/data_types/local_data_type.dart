@@ -1,6 +1,8 @@
 import 'dart:ffi';
 
 import 'local_types_enum.dart';
+import 'dart:io';
+import 'dart:convert';
 
 class LocalPointer {
   final String id;
@@ -23,6 +25,14 @@ class LocalPointer {
         lat = json['lat'],
         lng = json['lng'],
         type = json['type'];
+
+  Map<dynamic, dynamic> toJson() => {
+        '_id': id,
+        'name': name,
+        'lat': lat,
+        'lng': lng,
+        'type': type,
+      };
 }
 
 class Local {

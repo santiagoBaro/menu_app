@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:menuapp/data_types/data_types_export.dart';
+import 'package:menuapp/main.dart';
+import 'package:menuapp/pages/tabbed_login_page.dart';
 import 'package:menuapp/tools/visual_assets.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -17,16 +20,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 10), (Timer timer) {
+    //
+    storedUserCredentials = logedOffUser;
+    saveUserCredentials();
+    Timer.periodic(Duration(seconds: 5), (Timer timer) {
       if (_currentPage < 2) {
         _currentPage++;
-      } else {
-        _currentPage = 0;
       }
 
       _pageController.animateToPage(
         _currentPage,
-        duration: Duration(milliseconds: 5000),
+        duration: Duration(milliseconds: 2000),
         curve: Curves.easeIn,
       );
     });
@@ -57,13 +61,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
                   children: <Widget>[
-                    // ONBOARDING ILUSTRATIONS CARROUSELL
+                    //* ONBOARDING ILUSTRATIONS CARROUSELL
                     PageView(
                       scrollDirection: Axis.horizontal,
                       controller: _pageController,
                       onPageChanged: _onPageChanged,
                       children: <Widget>[
-                        // FIRST PAGE
+                        //* FIRST PAGE
                         Stack(
                           children: <Widget>[
                             Center(
@@ -88,7 +92,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           ],
                         ),
 
-                        // SECOND PAGE
+                        //* SECOND PAGE
                         Stack(
                           children: <Widget>[
                             Center(
@@ -104,7 +108,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 300.0),
                                 child: Text(
-                                  "Now what you are ordering",
+                                  "Know what you are ordering",
                                   style: onboardingTextStyle,
                                   textAlign: TextAlign.center,
                                 ),
@@ -113,7 +117,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           ],
                         ),
 
-                        // THIRD PAGE
+                        //* THIRD PAGE
                         Stack(
                           children: <Widget>[
                             Center(
@@ -143,17 +147,29 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               child: RaisedButton(
                                 child: Text(
                                   "Sign Up",
-                                  style: onboardingMessageTextStyle,
+                                  style: TextStyle(
+                                    color: myAppTheme['HighlightTextColor'],
+                                    fontSize: 20,
+                                    shadows: [
+                                      textShadow,
+                                      textHilight,
+                                    ],
+                                  ),
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 padding: const EdgeInsets.all(15),
                                 color: myAppTheme['AccentColor'],
-                                textColor: myAppTheme['HighlightTextColor'],
                                 onPressed: () {
-                                  // BlocProvider.of<PersistedBloc>(context)
-                                  //     .dispatch(SigningUpEvent());
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TabbedLoginPage(
+                                        initialIndex: 1,
+                                      ),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -161,32 +177,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                       ],
                     ),
-
-                    // CARROUSELL POSITION INICATOR
-                    // Stack(
-                    //   alignment: AlignmentDirectional.topStart,
-                    //   children: <Widget>[
-                    //     Container(
-                    //       margin: const EdgeInsets.only(bottom: 35),
-                    //       child: Row(
-                    //         mainAxisSize: MainAxisSize.min,
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: <Widget>[
-                    //           // CREATES DOTS, I = AMMOUNT OF PAGES
-                    //           for (int i = 0; i < 3; i++)
-                    //             (i == _currentPage)
-                    //                 ? SlideDots(true)
-                    //                 : SlideDots(false)
-                    //         ],
-                    //       ),
-                    //     )
-                    //   ],
-                    // )
                   ],
                 ),
               ),
 
-              // LOGIN REDITECTION
+              //* LOGIN REDITECTION
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -200,8 +195,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       style: onboardingMessageTextStyle,
                     ),
                     onPressed: () {
-                      // BlocProvider.of<PersistedBloc>(context)
-                      //     .dispatch(LoginInEvent());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TabbedLoginPage(),
+                        ),
+                      );
                     },
                   ),
                 ],

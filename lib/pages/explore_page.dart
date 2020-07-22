@@ -19,6 +19,8 @@ class _ExplorePageState extends State<ExplorePage> {
           //* MAPS INITIAL LOCATION ADN ZOOM
           center: LatLng(-34.92, -56.157),
           zoom: 15.0,
+          minZoom: 13.0,
+          maxZoom: 17.0,
         ),
         layers: [
           TileLayerOptions(
@@ -35,6 +37,26 @@ class _ExplorePageState extends State<ExplorePage> {
           MarkerLayerOptions(
             //* LIST OF MARKERS
             markers: [
+              Marker(
+                  point: LatLng(-34.92, -56.157),
+                  builder: (ctx) => Stack(
+                        children: [
+                          Center(
+                            child: Icon(
+                              Icons.trip_origin,
+                              color: Colors.blueGrey[200],
+                              size: 30,
+                            ),
+                          ),
+                          Center(
+                            child: Icon(
+                              Icons.brightness_1,
+                              color: Colors.blueGrey,
+                              size: 20,
+                            ),
+                          ),
+                        ],
+                      )),
               Marker(
                 anchorPos: AnchorPos.align(AnchorAlign.top),
                 width: 60.0,
@@ -54,7 +76,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 anchorPos: AnchorPos.align(AnchorAlign.top),
                 width: 60.0,
                 height: 50.0,
-                point: LatLng(-34.9185, -56.154), //
+                point: LatLng(-34.9185, -56.154),
                 builder: (ctx) => Container(
                   child: MapMarker(
                     localID: "1",
