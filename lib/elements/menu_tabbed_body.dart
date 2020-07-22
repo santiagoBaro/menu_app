@@ -29,6 +29,9 @@ class _MenuTabbedBodyState extends State<MenuTabbedBody>
 
   @override
   Widget build(BuildContext context) {
+    int headerSpacer = ((MediaQuery.of(context).size.width - 48) / 3 > 260)
+        ? 260 + 96
+        : ((MediaQuery.of(context).size.width - 48) / 3 + 120).round();
     return Container(
       child: Column(
         children: [
@@ -52,9 +55,8 @@ class _MenuTabbedBodyState extends State<MenuTabbedBody>
           Container(
             //* THIS CONTAINER IS WHERE THE TAB DISPLAYS ITS PAGES
             //TODO check height for different devices
-            height: MediaQuery.of(context).size.height - 40 - 210.4,
+            height: MediaQuery.of(context).size.height - headerSpacer,
             width: MediaQuery.of(context).size.width - 50,
-            //margin: EdgeInsets.only(left: 16.0, right: 16.0),
             child: TabBarView(
               controller: _nestedTabController,
               children: <Widget>[

@@ -138,11 +138,13 @@ funcMarkerTapped(BuildContext context) {
                   children: <Widget>[
                     //* BANNER IMAGE
                     Container(
+                      height: (MediaQuery.of(context).size.width - 48) / 3,
+                      constraints: BoxConstraints(maxHeight: 260),
                       child: Image.network(
                           'https://user-images.githubusercontent.com/37426199/87575121-d2659e80-c6a5-11ea-86cc-8284ab1956ea.png'),
                     ),
                     //* MENU BODY
-                    Container(
+                    Expanded(
                       child: MenuTabbedBody(),
                     ),
                   ],
