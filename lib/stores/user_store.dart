@@ -10,7 +10,6 @@ const String db = "http://localhost:12345/";
 class UserRepo {
   Future<Stream<User>> getUser(String id) async {
     String endpoint = "GetUserData/";
-    //TODO hacer logica de lat lng a grupo
     String url = db + endpoint + id;
 
     var client = http.Client();

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:gooey_carousel/gooey_carrousel.dart';
 import 'package:flutter/material.dart';
 import 'package:menuapp/data_types/data_types_export.dart';
 import 'package:menuapp/pages/tabbed_login_page.dart';
@@ -22,17 +23,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
     //
     storedUserCredentials = logedOffUser;
     saveUserCredentials();
-    Timer.periodic(Duration(seconds: 5), (Timer timer) {
-      if (_currentPage < 2) {
-        _currentPage++;
-      }
+    // Timer.periodic(Duration(seconds: 5), (Timer timer) {
+    //   if (_currentPage < 2) {
+    //     _currentPage++;
+    //   }
 
-      _pageController.animateToPage(
-        _currentPage,
-        duration: Duration(milliseconds: 2000),
-        curve: Curves.easeIn,
-      );
-    });
+    //   _pageController.animateToPage(
+    //     _currentPage,
+    //     duration: Duration(milliseconds: 2000),
+    //     curve: Curves.easeIn,
+    //   );
+    // });
   }
 
   @override
@@ -53,22 +54,23 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: Container(
         color: myAppTheme['PrimaryBackgroundColor'],
         child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
+          padding: const EdgeInsets.all(0),
+          child: Stack(
             children: <Widget>[
               Expanded(
                 child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
                   children: <Widget>[
                     //* ONBOARDING ILUSTRATIONS CARROUSELL
-                    PageView(
-                      scrollDirection: Axis.horizontal,
-                      controller: _pageController,
-                      onPageChanged: _onPageChanged,
+                    GooeyCarousel(
+                      // scrollDirection: Axis.horizontal,
+                      // controller: _pageController,
+                      // onPageChanged: _onPageChanged,
                       children: <Widget>[
                         //* FIRST PAGE
                         Stack(
                           children: <Widget>[
+                            Container(color: Colors.grey[100]),
                             Center(
                               child: Container(
                                 constraints: BoxConstraints(maxWidth: 500),
@@ -80,12 +82,30 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               ),
                             ),
                             Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 300.0),
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                  top: 320.0,
+                                  bottom: 20,
+                                  right: 20,
+                                ),
                                 child: Text(
                                   "Find New Spots",
                                   style: onboardingTextStyle,
                                   textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 500.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ActiveIndicator(),
+                                    InactiveIndicator(),
+                                    InactiveIndicator(),
+                                  ],
                                 ),
                               ),
                             ),
@@ -95,6 +115,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         //* SECOND PAGE
                         Stack(
                           children: <Widget>[
+                            Container(color: Colors.grey[200]),
                             Center(
                               child: Container(
                                 constraints: BoxConstraints(maxWidth: 500),
@@ -107,11 +128,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             ),
                             Center(
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 300.0),
+                                padding: const EdgeInsets.only(top: 360.0),
                                 child: Text(
                                   "Know what you are ordering",
                                   style: onboardingTextStyle,
                                   textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 500.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InactiveIndicator(),
+                                    ActiveIndicator(),
+                                    InactiveIndicator(),
+                                  ],
                                 ),
                               ),
                             ),
@@ -121,6 +156,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         //* THIRD PAGE
                         Stack(
                           children: <Widget>[
+                            Container(color: Colors.grey[100]),
                             Center(
                               child: Container(
                                 constraints: BoxConstraints(maxWidth: 500),
@@ -175,6 +211,20 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                 },
                               ),
                             ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 500.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InactiveIndicator(),
+                                    InactiveIndicator(),
+                                    ActiveIndicator(),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -184,32 +234,82 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
 
               //* LOGIN REDITECTION
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Already have an account?',
-                    style: onboardingMessageTextStyle,
-                  ),
-                  FlatButton(
-                    child: Text(
-                      'Login',
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Already have an account?',
                       style: onboardingMessageTextStyle,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TabbedLoginPage(),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                    FlatButton(
+                      child: Text(
+                        'Login',
+                        style: onboardingMessageTextStyle,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TabbedLoginPage(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ActiveIndicator extends StatelessWidget {
+  const ActiveIndicator({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Icon(
+            Icons.trip_origin,
+            color: Colors.blueGrey[200],
+            size: 30,
+          ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: Icon(
+              Icons.brightness_1,
+              color: Colors.blueGrey,
+              size: 20,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class InactiveIndicator extends StatelessWidget {
+  const InactiveIndicator({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Icon(
+        Icons.trip_origin,
+        color: Colors.blueGrey[200],
+        size: 30,
       ),
     );
   }

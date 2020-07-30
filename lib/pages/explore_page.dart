@@ -39,25 +39,26 @@ class _ExplorePageState extends State<ExplorePage> {
             markers: [
               //* USER'S LOCATION
               Marker(
-                  point: LatLng(-34.92, -56.157),
-                  builder: (ctx) => Stack(
-                        children: [
-                          Center(
-                            child: Icon(
-                              Icons.trip_origin,
-                              color: Colors.blueGrey[200],
-                              size: 30,
-                            ),
-                          ),
-                          Center(
-                            child: Icon(
-                              Icons.brightness_1,
-                              color: Colors.blueGrey,
-                              size: 18,
-                            ),
-                          ),
-                        ],
-                      )),
+                point: LatLng(-34.92, -56.157),
+                builder: (ctx) => Stack(
+                  children: [
+                    Center(
+                      child: Icon(
+                        Icons.trip_origin,
+                        color: Colors.blueGrey[200],
+                        size: 30,
+                      ),
+                    ),
+                    Center(
+                      child: Icon(
+                        Icons.brightness_1,
+                        color: Colors.blueGrey,
+                        size: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Marker(
                 anchorPos: AnchorPos.align(AnchorAlign.top),
                 width: 60.0,

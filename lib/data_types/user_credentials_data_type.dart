@@ -35,10 +35,11 @@ final UserCredentials logedOffUser = UserCredentials(
 
 class UserCredentials {
   String nickName;
-  String id;
+  String id; // not used
   String password;
   String token;
   List<LocalPointer> recentlyViewed;
+  List<String> searchedTerms;
   bool isNewUser;
 
   UserCredentials({
@@ -46,6 +47,7 @@ class UserCredentials {
     this.isNewUser,
     this.nickName,
     this.password,
+    this.searchedTerms,
     this.recentlyViewed,
     this.token,
   });
@@ -94,6 +96,10 @@ class UserCredentials {
     //* AND IF IT ALREADY EXISTED, IT PUSHES IT TO THE FRONT
     recentlyViewed.remove(newPointer);
     recentlyViewed.add(newPointer);
+  }
+
+  addSearch(String searchTearm) {
+    searchedTerms.add(searchTearm);
   }
 
   UserCredentials.fromJson(Map<String, dynamic> json) {

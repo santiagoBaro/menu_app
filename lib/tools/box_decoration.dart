@@ -30,7 +30,7 @@ BoxDecoration popUpBoxDecorator = BoxDecoration(
 
 BoxDecoration tabbedLoginHeaderBoxDecoration = BoxDecoration(
   gradient: LinearGradient(
-    colors: wowRed,
+    colors: foodioGradient,
     stops: stops2colors,
     begin: Alignment.topLeft,
     end: Alignment.centerRight,

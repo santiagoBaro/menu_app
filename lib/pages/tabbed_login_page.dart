@@ -50,7 +50,7 @@ class _TabbedLoginPageState extends State<TabbedLoginPage>
                   color: myAppTheme['PrimaryBackgroundColor'],
                   child: TabBar(
                     controller: _nestedTabController,
-                    indicatorColor: myAppTheme['PrimaryColor'],
+                    indicatorColor: myAppTheme['AccentColor'],
                     labelColor: myAppTheme['AccentTextColor'],
                     unselectedLabelColor: myAppTheme['SecondaryTextColor'],
                     isScrollable: true,
@@ -125,8 +125,6 @@ class LoginTab extends StatelessWidget {
                 controller: usernameController,
                 style: onboardingMessageTextStyle,
                 decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
                   hintText: 'Username',
                   contentPadding: const EdgeInsets.all(15),
                 ),

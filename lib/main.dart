@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'AvenirNextLTPro',
+        primaryColor: Color(0xFFFF5578),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: AppBuilder(),
@@ -107,21 +108,4 @@ class _AppBuilderState extends State<AppBuilder> {
       },
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   if (storedUserCredentials == null) {
-  //     return OnboardingPage();
-  //   }
-  //   if (storedUserCredentials.getId() == "empty") {
-  //     if (storedUserCredentials.isNewUser) {
-  //       //* IF THE USER IS NEW
-  //       return OnboardingPage();
-  //     }
-  //     //* IF IT IS NOT LOGGED IN, BUT NOT NEW
-  //     return TabbedLandingPage();
-  //   }
-  //   //* IF IT IS LOGGED IN
-  //   return TabbedLandingPage();
-  // }
 }
