@@ -1,3 +1,4 @@
+import 'availability_data_type.dart';
 import 'local_types_enum.dart';
 
 class LocalPointer {
@@ -41,12 +42,12 @@ class Local {
   final String time;
   final List<String> chips;
   final double serviceRateing;
+  final Availability availability;
   final String bannerImage;
   final double foodRateing;
   final int averageCost;
   final String menu;
   final String reviews;
-  //TODO add availability
 
   Local({
     this.id,
@@ -60,6 +61,7 @@ class Local {
     this.serviceRateing,
     this.bannerImage,
     this.foodRateing,
+    this.availability,
     this.averageCost,
     this.menu,
     this.reviews,
@@ -74,6 +76,7 @@ class Local {
         ranking = json['ranking'],
         chips = json['chips'],
         time = json['time'],
+        availability = json['availability'],
         serviceRateing = json['service_rateing'],
         bannerImage = json['banner_image'],
         foodRateing = json['food_rateing'],
