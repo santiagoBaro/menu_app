@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:gooey_carousel/gooey_carrousel.dart';
 import 'package:flutter/material.dart';
 import 'package:menuapp/data_types/data_types_export.dart';
@@ -14,7 +12,6 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  int _currentPage = 0;
   final PageController _pageController = PageController(initialPage: 0);
 
   @override
@@ -23,29 +20,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
     //
     storedUserCredentials = logedOffUser;
     saveUserCredentials();
-    // Timer.periodic(Duration(seconds: 5), (Timer timer) {
-    //   if (_currentPage < 2) {
-    //     _currentPage++;
-    //   }
-
-    //   _pageController.animateToPage(
-    //     _currentPage,
-    //     duration: Duration(milliseconds: 2000),
-    //     curve: Curves.easeIn,
-    //   );
-    // });
   }
 
   @override
   void dispose() {
     super.dispose();
     _pageController.dispose();
-  }
-
-  _onPageChanged(int index) {
-    setState(() {
-      _currentPage = index;
-    });
   }
 
   @override

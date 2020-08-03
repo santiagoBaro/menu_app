@@ -2,6 +2,7 @@ import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_picker_dropdown.dart';
 import 'package:country_pickers/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/data_types/data_types_export.dart';
 import 'package:menuapp/pages/tabbed_landing_page.dart';
 import 'package:menuapp/tools/visual_assets.dart';
 
@@ -186,6 +187,11 @@ class LoginTab extends StatelessWidget {
                     onPressed: () {
                       //TODO do separate function with checks
                       if (_loginFormKey.currentState.validate()) {
+                        storedUserCredentials
+                            .setNickname(usernameController.text);
+                        storedUserCredentials
+                            .setPassword(passwordContrller.text);
+                        saveUserCredentials();
                         Navigator.push(
                           context,
                           MaterialPageRoute(

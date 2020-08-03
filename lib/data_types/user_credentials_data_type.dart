@@ -17,7 +17,6 @@ Future<Null> saveUserCredentials() async {
 
 final UserCredentials emptyUser = UserCredentials(
   nickName: encrypter.encrypt("empty", iv: iv).base64,
-  id: encrypter.encrypt("empty", iv: iv).base64,
   password: encrypter.encrypt("empty", iv: iv).base64,
   token: encrypter.encrypt("empty", iv: iv).base64,
   isNewUser: true,
@@ -26,7 +25,6 @@ final UserCredentials emptyUser = UserCredentials(
 
 final UserCredentials logedOffUser = UserCredentials(
   nickName: encrypter.encrypt("empty", iv: iv).base64,
-  id: encrypter.encrypt("empty", iv: iv).base64,
   password: encrypter.encrypt("empty", iv: iv).base64,
   token: encrypter.encrypt("empty", iv: iv).base64,
   isNewUser: false,
@@ -35,7 +33,6 @@ final UserCredentials logedOffUser = UserCredentials(
 
 class UserCredentials {
   String nickName;
-  String id; // not used
   String password;
   String token;
   List<LocalPointer> recentlyViewed;
@@ -43,7 +40,6 @@ class UserCredentials {
   bool isNewUser;
 
   UserCredentials({
-    this.id,
     this.isNewUser,
     this.nickName,
     this.password,
@@ -60,10 +56,6 @@ class UserCredentials {
     password = encrypter.encrypt(newPassword, iv: iv).base64;
   }
 
-  setId(String newId) {
-    id = encrypter.encrypt(newId, iv: iv).base64;
-  }
-
   setToken(String newToken) {
     token = encrypter.encrypt(newToken, iv: iv).base64;
   }
@@ -74,10 +66,6 @@ class UserCredentials {
 
   String getPassword() {
     return encrypter.decrypt64(password, iv: iv);
-  }
-
-  String getId() {
-    return encrypter.decrypt64(id, iv: iv);
   }
 
   String getToken() {
@@ -99,6 +87,7 @@ class UserCredentials {
   }
 
   addSearch(String searchTearm) {
+    searchedTerms.remove(searchTearm);
     searchedTerms.add(searchTearm);
   }
 
@@ -111,7 +100,6 @@ class UserCredentials {
     }
 
     nickName = json['nickName'];
-    id = json['id'];
     password = json['password'];
     token = json['token'];
     isNewUser = json['isNewUser'];
@@ -119,7 +107,6 @@ class UserCredentials {
 
   Map<String, dynamic> toJson() => {
         'nickName': nickName,
-        'id': id,
         'password': password,
         'token': token,
         'recentlyViewed': recentlyViewed,

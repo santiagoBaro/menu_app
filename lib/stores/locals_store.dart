@@ -13,6 +13,7 @@ class LocalsRepo {
   Future<Stream<Local>> getLocals() async {
     String endpoint = "GetLocalsGeo";
     //TODO hacer logica de lat lng a grupo
+    Future<LocationData> usersLocation = getUsersLocation();
 
     int lat = 25;
     int lng = 15;
@@ -26,24 +27,6 @@ class LocalsRepo {
         .transform(json.decoder)
         .expand((body) => (body as List))
         .map((json) => Local.fromJson(json));
-  }
-}
-
-class LocalsStore extends Store {
-  final repo = LocalsRepo();
-
-  LocalsStore() {
-    triggerOnAction(loadLocalsAction, (nothing) async {
-      //TODO global variable current position
-      Future<LocationData> usersLocation = getUsersLocation();
-      var stream = await repo.getLocals();
-      if (_locals.isEmpty) {
-        stream.listen((local) => _locals.add(local));
-      } else {
-        _locals.clear();
-        stream.listen((local) => _locals.add(local));
-      }
-    });
   }
 
   Future<LocationData> getUsersLocation() async {
@@ -71,6 +54,23 @@ class LocalsStore extends Store {
 
     _locationData = await location.getLocation();
     return _locationData;
+  }
+}
+
+class LocalsStore extends Store {
+  final repo = LocalsRepo();
+
+  LocalsStore() {
+    triggerOnAction(loadLocalsAction, (nothing) async {
+      //TODO global variable current position
+      var stream = await repo.getLocals();
+      if (_locals.isEmpty) {
+        stream.listen((local) => _locals.add(local));
+      } else {
+        _locals.clear();
+        stream.listen((local) => _locals.add(local));
+      }
+    });
   }
 
   final List<Local> _locals = <Local>[];

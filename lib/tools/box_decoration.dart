@@ -33,7 +33,7 @@ BoxDecoration tabbedLoginHeaderBoxDecoration = BoxDecoration(
     colors: foodioGradient,
     stops: stops2colors,
     begin: Alignment.topLeft,
-    end: Alignment.centerRight,
+    end: Alignment.center,
   ),
 );
 

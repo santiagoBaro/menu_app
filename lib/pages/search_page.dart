@@ -1,8 +1,20 @@
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/data_types/data_types_export.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({Key key}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  SearchPage({Key key}) : super(key: key);
+
+  @override
+  _SearchPageState createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  final SearchBarController<Local> _searchBarController = SearchBarController();
+
+  Future<List<Local>> _getALlPosts(String text) async {
+    // TODO
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,30 +31,28 @@ class SearchPage extends StatelessWidget {
         ],
       ),
       constraints: BoxConstraints(maxWidth: 700),
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 8.0, right: 8.0, top: 10.0),
-                child: SearchBar(
-                  hintText: "search",
-                  textStyle: TextStyle(color: Colors.black87, fontSize: 20),
-                  loader: Text("loading..."),
-                  onSearch: (String text) {
-                    //TODO
-                  },
-                  onItemFound: (item, int index) {
-                    //TODO
-                  },
-                ),
-              ),
-              height: MediaQuery.of(context).size.height - 58,
-            ),
-          ],
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 10.0),
+        child: SearchBar(
+          hintText: "search",
+          textStyle: TextStyle(color: Colors.black87, fontSize: 20),
+          searchBarController: _searchBarController,
+          loader: Text("loading..."),
+          onSearch: _getALlPosts,
+          searchBarPadding: EdgeInsets.symmetric(horizontal: 10),
+          headerPadding: EdgeInsets.symmetric(horizontal: 10),
+          listPadding: EdgeInsets.symmetric(horizontal: 10),
+          suggestions: getSearchedTearms(),
+          onItemFound: (Object item, int index) {},
         ),
       ),
     );
+  }
+
+  List<String> getSearchedTearms() {
+    if (storedUserCredentials.searchedTerms == null) {
+      return List<String>();
+    }
+    return storedUserCredentials.searchedTerms;
   }
 }

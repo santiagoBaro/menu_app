@@ -74,7 +74,6 @@ class _AppBuilderState extends State<AppBuilder> {
     prefs.setString('foodio_sp', nameController.text);
 
     setState(() {
-      storedUserCredentials.setId('newId');
       storedUserCredentials.setNickname('newNickname');
       storedUserCredentials.setPassword('newPassword');
       storedUserCredentials.setToken('newToken');
@@ -95,7 +94,7 @@ class _AppBuilderState extends State<AppBuilder> {
             child: CircularProgressIndicator(),
           );
         }
-        if (storedUserCredentials.getId() == "empty") {
+        if (storedUserCredentials.getNickname() == "empty") {
           if (storedUserCredentials.isNewUser) {
             //* IF THE USER IS NEW
             return OnboardingPage();

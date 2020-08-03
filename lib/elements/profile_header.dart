@@ -36,9 +36,9 @@ class ProfileHeader extends StatelessWidget {
           ),
         ],
         gradient: LinearGradient(
-          colors: hotSand,
+          colors: foodioGradient,
           begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          end: Alignment.bottomCenter,
         ),
         //color: Colors.redAccent,
       ),

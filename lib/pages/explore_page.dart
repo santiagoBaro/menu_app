@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:menuapp/elements/map_marker.dart';
+import 'package:menuapp/elements/map_marker_2.dart';
 
 class ExplorePage extends StatefulWidget {
   ExplorePage({Key key}) : super(key: key);
@@ -65,10 +66,11 @@ class _ExplorePageState extends State<ExplorePage> {
                 height: 50.0,
                 point: LatLng(-34.9195, -56.157),
                 builder: (ctx) => Container(
-                  child: MapMarker(
+                  child: NewMapMarker(
                     localID: "1",
+                    color: Colors.redAccent,
                     typeIcon: Icons.fastfood,
-                    timeValue: "45m",
+                    timeValue: "45'",
                     priceValue: "275",
                     starValue: "4",
                   ),
@@ -80,10 +82,11 @@ class _ExplorePageState extends State<ExplorePage> {
                 height: 50.0,
                 point: LatLng(-34.9185, -56.154),
                 builder: (ctx) => Container(
-                  child: MapMarker(
+                  child: NewMapMarker(
                     localID: "1",
+                    color: Colors.redAccent,
                     typeIcon: Icons.restaurant,
-                    timeValue: "45m",
+                    timeValue: "45'",
                     priceValue: "275",
                     starValue: "4",
                   ),
@@ -95,10 +98,11 @@ class _ExplorePageState extends State<ExplorePage> {
                 height: 50.0,
                 point: LatLng(-34.919, -56.165), //
                 builder: (ctx) => Container(
-                  child: MapMarker(
+                  child: NewMapMarker(
                     localID: "1",
+                    color: Colors.redAccent,
                     typeIcon: Icons.local_pizza,
-                    timeValue: "45m",
+                    timeValue: "45'",
                     priceValue: "275",
                     starValue: "4",
                   ),
@@ -110,10 +114,11 @@ class _ExplorePageState extends State<ExplorePage> {
                 height: 50.0,
                 point: LatLng(-34.923, -56.162), //
                 builder: (ctx) => Container(
-                  child: MapMarker(
+                  child: NewMapMarker(
                     localID: "1",
+                    color: Colors.grey[700],
                     typeIcon: Icons.cake,
-                    timeValue: "30m",
+                    timeValue: "30'",
                     priceValue: "200",
                     starValue: "5",
                   ),

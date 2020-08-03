@@ -46,6 +46,7 @@ class Local {
   final int averageCost;
   final String menu;
   final String reviews;
+  //TODO add availability
 
   Local({
     this.id,

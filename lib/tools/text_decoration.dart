@@ -13,6 +13,18 @@ Shadow textHilight = Shadow(
   offset: Offset(-2.0, -2.0),
 );
 
+Shadow smallTextShadow = Shadow(
+  blurRadius: 3.0,
+  color: Colors.black12,
+  offset: Offset(1.5, 1.5),
+);
+
+Shadow smallTextHilight = Shadow(
+  blurRadius: 3.0,
+  color: Colors.white38,
+  offset: Offset(-1.0, -1.0),
+);
+
 TextStyle hintTextStyle = TextStyle(
   color: myAppTheme['HintTextColor'],
 );
@@ -34,6 +46,16 @@ TextStyle onboardingTextStyle = TextStyle(
     textHilight,
   ],
   color: myAppTheme['PrimaryTextColor'],
+);
+
+TextStyle mapMarkerTextStyle = TextStyle(
+  fontSize: 9,
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+  shadows: [
+    smallTextShadow,
+    //smallTextHilight,
+  ],
 );
 
 TextStyle secondaryMessageTextStyle = TextStyle(
