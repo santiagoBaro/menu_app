@@ -1,3 +1,6 @@
+import 'package:menuapp/data_types/dish_data_type.dart';
+import 'package:menuapp/data_types/review_data_type.dart';
+
 import 'availability_data_type.dart';
 import 'local_types_enum.dart';
 
@@ -37,17 +40,17 @@ class Local {
   final String name;
   final double lat;
   final double lng;
-  final local_types type;
   final double ranking;
+  final local_types type;
   final String time;
+  final Availability availability;
   final List<String> chips;
   final double serviceRateing;
-  final Availability availability;
   final String bannerImage;
   final double foodRateing;
-  final int averageCost;
-  final String menu;
-  final String reviews;
+  final double averageCost;
+  final List<Dish> menu;
+  final List<Review> reviews;
 
   Local({
     this.id,

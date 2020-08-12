@@ -90,8 +90,11 @@ class _AppBuilderState extends State<AppBuilder> {
       future: autoLogIn(),
       builder: (BuildContext context, AsyncSnapshot<Null> snapshot) {
         if (storedUserCredentials == null) {
-          return Center(
-            child: CircularProgressIndicator(),
+          return Container(
+            color: Colors.redAccent,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         }
         if (storedUserCredentials.getNickname() == "empty") {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
-import 'package:menuapp/elements/map_marker.dart';
 import 'package:menuapp/elements/map_marker_2.dart';
 
 class ExplorePage extends StatefulWidget {

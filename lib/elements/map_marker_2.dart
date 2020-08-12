@@ -154,9 +154,20 @@ funcMarkerTapped(BuildContext context) {
                     Container(
                       height: (MediaQuery.of(context).size.width - 48) / 3,
                       constraints: BoxConstraints(maxHeight: 260),
-                      child: Image.network(
-                          'https://user-images.githubusercontent.com/37426199/87575121-d2659e80-c6a5-11ea-86cc-8284ab1956ea.png'),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                            'https://user-images.githubusercontent.com/37426199/87575121-d2659e80-c6a5-11ea-86cc-8284ab1956ea.png',
+                          ),
+                        ),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5.0),
+                          topRight: Radius.circular(5.0),
+                        ),
+                      ),
                     ),
+
                     //* MENU BODY
                     Expanded(
                       child: MenuTabbedBody(),
