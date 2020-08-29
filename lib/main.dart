@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Foodio',
       theme: ThemeData(
         fontFamily: 'AvenirNextLTPro',
         primaryColor: Color(0xFFFF5578),
