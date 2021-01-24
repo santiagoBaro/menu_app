@@ -9,7 +9,7 @@ Map<String, Color> lightTheme = {
   "SecondaryColor": Color(0x73000000),
   "BaseColor": Color(0xFF78A594),
   "ShadowColor": Color(0xFF567166),
-  "AccentColor": Color(0xFF7DD6A4),
+  "AccentColor": Color(0xFFFF5578),
   // ACTIONS
   "SuccessColor": Color(0xFF19CC95),
   "WarningColor": Color(0xFFEF5C59),
@@ -32,7 +32,7 @@ Map<String, Color> lightTheme = {
   "DetailBackgroundColor": Color(0xFFffffff),
   "TranslucentBackgroundColor": Color(0x1F000000),
   // TEXT
-  "PrimaryTextColor": Color(0x8A000000),
+  "PrimaryTextColor": Color(0xFF4D4444),
   "HighlightTextColor": Color(0xFFffffff),
   "AccentTextColor": Color(0xFF26A69A),
   "SecondaryTextColor": Color(0x73000000),

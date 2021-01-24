@@ -1,23 +1,16 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:menuapp/pages/explore_page.dart';
 import 'package:menuapp/pages/onboarding_page.dart';
-import 'package:menuapp/pages/profile_page.dart';
-import 'package:menuapp/pages/recomended_page.dart';
-import 'package:menuapp/pages/search_page.dart';
 import 'package:menuapp/pages/tabbed_landing_page.dart';
 import 'package:menuapp/pages/tabbed_login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_state.dart';
-
-import 'bloc/bloc/bloc/persisted_bloc.dart';
+import 'data_types/data_types_export.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
+  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   runApp(MyApp());
 }
 
@@ -26,141 +19,95 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Foodio',
       theme: ThemeData(
         fontFamily: 'AvenirNextLTPro',
-        primarySwatch: Colors.blue,
+        primaryColor: Color(0xFFFF5578),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AppsBuilder(),
-      debugShowCheckedModeBanner: false,
+      home: AppBuilder(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class AppBuilder extends StatefulWidget {
+  AppBuilder({Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _AppBuilderState createState() => _AppBuilderState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
+class _AppBuilderState extends State<AppBuilder> {
+  TextEditingController nameController = TextEditingController();
 
-  static List<Widget> _widgetOptions = <Widget>[
-    ExplorePage(),
-    SearchPage(),
-    RecomendedPage(),
-    ProfilePage(),
-  ];
+  @override
+  void initState() {
+    //autoLogIn();
+    super.initState();
+  }
 
-  void _onItemTapped(int index) {
+  Future<Null> autoLogIn() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String foodioSpString = prefs.getString('foodio_sp');
+    if (foodioSpString == null || foodioSpString == '') {
+      storedUserCredentials = emptyUser;
+      print('enterd string == null : ' +
+          storedUserCredentials.isNewUser.toString());
+    } else {
+      Map foodioSpMap = jsonDecode(foodioSpString);
+      storedUserCredentials = UserCredentials.fromJson(foodioSpMap);
+    }
+    return;
+  }
+
+  Future<Null> logout() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('foodio_sp', logedOffUser.toJson().toString());
+
     setState(() {
-      _selectedIndex = index;
+      storedUserCredentials = logedOffUser;
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            title: Text('Explore'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Search'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            title: Text('Recomended'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.redAccent,
-        unselectedItemColor: Colors.black38,
-        onTap: _onItemTapped,
-      ),
-    );
-  }
-}
+  Future<Null> loginUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('foodio_sp', nameController.text);
 
-class AppsBuilder extends StatelessWidget {
-  const AppsBuilder({Key key}) : super(key: key);
+    setState(() {
+      storedUserCredentials.setNickname('newNickname');
+      storedUserCredentials.setPassword('newPassword');
+      storedUserCredentials.setToken('newToken');
+      storedUserCredentials.recentlyViewed = List<LocalPointer>();
+      storedUserCredentials.isNewUser = false;
+    });
+
+    nameController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        builder: (context) => PersistedBloc(),
-        child: Container(
-          child: BlocBuilder<PersistedBloc, PersistedState>(
-            builder: (BuildContext context, PersistedState state) {
-              if (state is InitialState) {
-                //
-                return buildOnboardingPage();
-              } else if (state is LoadingState) {
-                //
-                return buildLoading();
-              } else if (state is LogedState) {
-                //
-                return buildTabbedLandingPage();
-              } else if (state is NotLogedState) {
-                //
-                return buildLoginPage();
-              } else if (state is RegistrateringState) {
-                //
-                return buildLoginPage();
-              }
-            },
-          ),
-        ),
-      ),
+    return FutureBuilder(
+      future: autoLogIn(),
+      builder: (BuildContext context, AsyncSnapshot<Null> snapshot) {
+        if (storedUserCredentials == null) {
+          return Container(
+            color: Colors.redAccent,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        if (storedUserCredentials.getNickname() == "empty") {
+          if (storedUserCredentials.isNewUser) {
+            //* IF THE USER IS NEW
+            return OnboardingPage();
+          }
+          //* IF IT IS NOT LOGGED IN, BUT NOT NEW
+          return TabbedLoginPage();
+        }
+        //* IF IT IS LOGGED IN
+        return TabbedLandingPage();
+      },
     );
-  }
-
-  Widget buildOnboardingPage() {
-    return OnboardingPage();
-  }
-
-  Widget buildLoading() {
-    return Column(
-      children: <Widget>[
-        Text(
-          'Getting your information',
-          style: TextStyle(
-            fontSize: 40,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        CircularProgressIndicator(),
-      ],
-      mainAxisAlignment: MainAxisAlignment.center,
-    );
-  }
-
-  Widget buildTabbedLandingPage() {
-    return TabbedLandingPage();
-  }
-
-  Widget buildLoginPage() {
-    return TabbedLoginPage();
   }
 }

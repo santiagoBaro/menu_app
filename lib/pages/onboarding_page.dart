@@ -1,10 +1,7 @@
-import 'dart:async';
-
+import 'package:gooey_carousel/gooey_carrousel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_bloc.dart';
-
-import 'package:menuapp/bloc/bloc/bloc/persisted_event.dart';
+import 'package:menuapp/data_types/data_types_export.dart';
+import 'package:menuapp/pages/tabbed_login_page.dart';
 import 'package:menuapp/tools/visual_assets.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -15,25 +12,14 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  int _currentPage = 0;
   final PageController _pageController = PageController(initialPage: 0);
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 10), (Timer timer) {
-      if (_currentPage < 2) {
-        _currentPage++;
-      } else {
-        _currentPage = 0;
-      }
-
-      _pageController.animateToPage(
-        _currentPage,
-        duration: Duration(milliseconds: 5000),
-        curve: Curves.easeIn,
-      );
-    });
+    //
+    storedUserCredentials = logedOffUser;
+    saveUserCredentials();
   }
 
   @override
@@ -42,36 +28,32 @@ class _OnboardingPageState extends State<OnboardingPage> {
     _pageController.dispose();
   }
 
-  _onPageChanged(int index) {
-    setState(() {
-      _currentPage = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         color: myAppTheme['PrimaryBackgroundColor'],
         child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
+          padding: const EdgeInsets.all(0),
+          child: Stack(
             children: <Widget>[
               Expanded(
                 child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
                   children: <Widget>[
-                    // ONBOARDING ILUSTRATIONS CARROUSELL
-                    PageView(
-                      scrollDirection: Axis.horizontal,
-                      controller: _pageController,
-                      onPageChanged: _onPageChanged,
+                    //* ONBOARDING ILUSTRATIONS CARROUSELL
+                    GooeyCarousel(
+                      // scrollDirection: Axis.horizontal,
+                      // controller: _pageController,
+                      // onPageChanged: _onPageChanged,
                       children: <Widget>[
-                        // FIRST PAGE
+                        //* FIRST PAGE
                         Stack(
                           children: <Widget>[
+                            Container(color: Colors.grey[100]),
                             Center(
                               child: Container(
+                                constraints: BoxConstraints(maxWidth: 500),
                                 child: Padding(
                                   padding: const EdgeInsets.only(bottom: 50.0),
                                   child:
@@ -80,8 +62,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               ),
                             ),
                             Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 300.0),
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                  top: 320.0,
+                                  bottom: 20,
+                                  right: 20,
+                                ),
                                 child: Text(
                                   "Find New Spots",
                                   style: onboardingTextStyle,
@@ -89,14 +75,30 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                 ),
                               ),
                             ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 500.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ActiveIndicator(),
+                                    InactiveIndicator(),
+                                    InactiveIndicator(),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
 
-                        // SECOND PAGE
+                        //* SECOND PAGE
                         Stack(
                           children: <Widget>[
+                            Container(color: Colors.grey[200]),
                             Center(
                               child: Container(
+                                constraints: BoxConstraints(maxWidth: 500),
                                 child: Padding(
                                   padding: const EdgeInsets.only(bottom: 50.0),
                                   child: Image.asset(
@@ -106,24 +108,40 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             ),
                             Center(
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 300.0),
+                                padding: const EdgeInsets.only(top: 360.0),
                                 child: Text(
-                                  "Now what you are ordering",
+                                  "Know what you are ordering",
                                   style: onboardingTextStyle,
                                   textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 500.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InactiveIndicator(),
+                                    ActiveIndicator(),
+                                    InactiveIndicator(),
+                                  ],
                                 ),
                               ),
                             ),
                           ],
                         ),
 
-                        // THIRD PAGE
+                        //* THIRD PAGE
                         Stack(
                           children: <Widget>[
+                            Container(color: Colors.grey[100]),
                             Center(
                               child: Container(
+                                constraints: BoxConstraints(maxWidth: 500),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 50.0),
+                                  padding: const EdgeInsets.only(bottom: 100.0),
                                   child: Image.asset(
                                       'assets/images/ice-cream.png'),
                                 ),
@@ -147,72 +165,131 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               child: RaisedButton(
                                 child: Text(
                                   "Sign Up",
-                                  style: onboardingMessageTextStyle,
+                                  style: TextStyle(
+                                    color: myAppTheme['HighlightTextColor'],
+                                    fontSize: 20,
+                                    shadows: [
+                                      textShadow,
+                                      textHilight,
+                                    ],
+                                  ),
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 padding: const EdgeInsets.all(15),
                                 color: myAppTheme['AccentColor'],
-                                textColor: myAppTheme['HighlightTextColor'],
                                 onPressed: () {
-                                  BlocProvider.of<PersistedBloc>(context)
-                                      .dispatch(SigningUpEvent());
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TabbedLoginPage(
+                                        initialIndex: 1,
+                                      ),
+                                    ),
+                                  );
                                 },
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 500.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InactiveIndicator(),
+                                    InactiveIndicator(),
+                                    ActiveIndicator(),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ],
                     ),
-
-                    // CARROUSELL POSITION INICATOR
-                    // Stack(
-                    //   alignment: AlignmentDirectional.topStart,
-                    //   children: <Widget>[
-                    //     Container(
-                    //       margin: const EdgeInsets.only(bottom: 35),
-                    //       child: Row(
-                    //         mainAxisSize: MainAxisSize.min,
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: <Widget>[
-                    //           // CREATES DOTS, I = AMMOUNT OF PAGES
-                    //           for (int i = 0; i < 3; i++)
-                    //             (i == _currentPage)
-                    //                 ? SlideDots(true)
-                    //                 : SlideDots(false)
-                    //         ],
-                    //       ),
-                    //     )
-                    //   ],
-                    // )
                   ],
                 ),
               ),
 
-              // LOGIN REDITECTION
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Already have an account?',
-                    style: onboardingMessageTextStyle,
-                  ),
-                  FlatButton(
-                    child: Text(
-                      'Login',
+              //* LOGIN REDITECTION
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Already have an account?',
                       style: onboardingMessageTextStyle,
                     ),
-                    onPressed: () {
-                      BlocProvider.of<PersistedBloc>(context)
-                          .dispatch(LoginInEvent());
-                    },
-                  ),
-                ],
+                    FlatButton(
+                      child: Text(
+                        'Login',
+                        style: onboardingMessageTextStyle,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TabbedLoginPage(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ActiveIndicator extends StatelessWidget {
+  const ActiveIndicator({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Icon(
+            Icons.trip_origin,
+            color: Colors.blueGrey[200],
+            size: 30,
+          ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: Icon(
+              Icons.brightness_1,
+              color: Colors.blueGrey,
+              size: 20,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class InactiveIndicator extends StatelessWidget {
+  const InactiveIndicator({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Icon(
+        Icons.trip_origin,
+        color: Colors.blueGrey[200],
+        size: 30,
       ),
     );
   }

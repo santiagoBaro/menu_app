@@ -35,6 +35,11 @@ List<Color> hotSand = [
   Color(0xFFe29e3a),
 ];
 
+List<Color> foodioGradient = [
+  Color(0xFFFF5578),
+  Colors.redAccent,
+];
+
 List<Color> pinkO = [
   Color(0xFFee2a7b),
   Color(0xFFcc6493),

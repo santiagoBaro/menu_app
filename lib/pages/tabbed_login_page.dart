@@ -1,12 +1,14 @@
+import 'package:country_pickers/country.dart';
+import 'package:country_pickers/country_picker_dropdown.dart';
+import 'package:country_pickers/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_bloc.dart';
-import 'package:menuapp/bloc/bloc/bloc/persisted_event.dart';
+import 'package:menuapp/data_types/data_types_export.dart';
+import 'package:menuapp/pages/tabbed_landing_page.dart';
 import 'package:menuapp/tools/visual_assets.dart';
 
 class TabbedLoginPage extends StatefulWidget {
-  TabbedLoginPage({Key key, this.initialIndex}) : super(key: key);
   final int initialIndex;
+  TabbedLoginPage({Key key, this.initialIndex = 0}) : super(key: key);
 
   @override
   _TabbedLoginPageState createState() => _TabbedLoginPageState();
@@ -19,8 +21,8 @@ class _TabbedLoginPageState extends State<TabbedLoginPage>
   @override
   void initState() {
     super.initState();
-
     _nestedTabController = new TabController(length: 2, vsync: this);
+    _nestedTabController.index = widget.initialIndex;
   }
 
   @override
@@ -34,54 +36,62 @@ class _TabbedLoginPageState extends State<TabbedLoginPage>
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
-    return SafeArea(
-      child: Container(
-        decoration: tabbedLoginHeaderBoxDecoration,
-        child: Column(
-          children: <Widget>[
-            Container(
-              width: screenWidth,
-              color: myAppTheme['PrimaryBackgroundColor'],
-              child: TabBar(
-                controller: _nestedTabController,
-                indicatorColor: myAppTheme['PrimaryColor'],
-                labelColor: myAppTheme['AccentTextColor'],
-                unselectedLabelColor: myAppTheme['SecondaryTextColor'],
-                isScrollable: true,
-                tabs: <Widget>[
-                  Tab(
-                    text: "Login",
+    return Material(
+      child: Scaffold(
+        body: Container(
+          //* BACKGROUND
+          decoration: tabbedLoginHeaderBoxDecoration,
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                //* TAB BAR
+                Container(
+                  constraints: BoxConstraints(maxWidth: 700),
+                  width: screenWidth,
+                  color: myAppTheme['PrimaryBackgroundColor'],
+                  child: TabBar(
+                    controller: _nestedTabController,
+                    indicatorColor: myAppTheme['AccentColor'],
+                    labelColor: myAppTheme['AccentTextColor'],
+                    unselectedLabelColor: myAppTheme['SecondaryTextColor'],
+                    isScrollable: true,
+                    tabs: <Widget>[
+                      Tab(
+                        text: "Login",
+                      ),
+                      Tab(
+                        text: "SignUp",
+                      ),
+                    ],
                   ),
-                  Tab(
-                    text: "SignUp",
+                ),
+                Container(
+                  constraints: BoxConstraints(maxWidth: 700),
+                  //* TAB VIEW
+                  // THIS CONTAINER IS WHERE THE TAB DISPLAYS ITS PAGES
+                  color: myAppTheme['PrimaryBackgroundColor'],
+                  height: screenHeight * 0.5,
+                  child: TabBarView(
+                    controller: _nestedTabController,
+                    children: <Widget>[
+                      Container(
+                        //* FIRST TAB PAGE
+                        // LOGIN
+                        child: LoginTab(),
+                      ),
+                      Container(
+                        //* SECOND TAB PAGE
+                        // SIGNUP
+                        child: SignUpTab(),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.end,
             ),
-            Container(
-              // THIS CONTAINER IS WHERE THE TAB DISPLAYS ITS PAGES
-              color: myAppTheme['PrimaryBackgroundColor'],
-              height: screenHeight * 0.5,
-              child: TabBarView(
-                controller: _nestedTabController,
-                children: <Widget>[
-                  Container(
-                    // FIRST TAB PAGE
-                    // LOGIN
-                    child: LoginTab(),
-                  ),
-                  Container(
-                    // SECOND TAB PAGE
-                    // SIGNUP
-                    child: SignUpTab(),
-                  ),
-                ],
-              ),
-            )
-          ],
-          mainAxisAlignment: MainAxisAlignment.end,
+          ),
         ),
-        width: screenWidth,
       ),
     );
   }
@@ -90,7 +100,7 @@ class _TabbedLoginPageState extends State<TabbedLoginPage>
 class LoginTab extends StatelessWidget {
   //const LoginTab({Key key}) : super(key: key);
 
-  final _loginFormKey = GlobalKey<FormState>();
+  static final _loginFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -109,15 +119,13 @@ class LoginTab extends StatelessWidget {
                 style: titleTextStyle,
               ),
             ),
-            // USERNAME TEXT FIELD
+            //* USERNAME TEXT FIELD
             Padding(
               padding: tabbedLoginPagging,
               child: TextFormField(
                 controller: usernameController,
                 style: onboardingMessageTextStyle,
                 decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.transparent,
                   hintText: 'Username',
                   contentPadding: const EdgeInsets.all(15),
                 ),
@@ -138,7 +146,7 @@ class LoginTab extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    // PASSWORD TEXT FIELD
+                    //* PASSWORD TEXT FIELD
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: TextFormField(
@@ -161,7 +169,7 @@ class LoginTab extends StatelessWidget {
                     ),
                   ),
 
-                  // LOGIN BUTTON
+                  //* LOGIN BUTTON
                   FlatButton(
                     child: Text(
                       'Login',
@@ -169,7 +177,7 @@ class LoginTab extends StatelessWidget {
                     ),
                     shape: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: myAppTheme['PrimaryActionButtonColor'],
+                        color: myAppTheme['AccentColor'],
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(5),
@@ -177,9 +185,18 @@ class LoginTab extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     textColor: myAppTheme['PrimaryActionButtonColor'],
                     onPressed: () {
+                      //TODO do separate function with checks
                       if (_loginFormKey.currentState.validate()) {
-                        BlocProvider.of<PersistedBloc>(context).dispatch(
-                          LogInEvent(),
+                        storedUserCredentials
+                            .setNickname(usernameController.text);
+                        storedUserCredentials
+                            .setPassword(passwordContrller.text);
+                        saveUserCredentials();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TabbedLandingPage(),
+                          ),
                         );
                       }
                     },
@@ -190,7 +207,7 @@ class LoginTab extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            // LOGIN WITH GOOGLE BUTTON
+            //* LOGIN WITH GOOGLE BUTTON
             FlatButton(
               color: Colors.black,
               onPressed: () {},
@@ -212,14 +229,15 @@ class LoginTab extends StatelessWidget {
 class SignUpTab extends StatelessWidget {
   //const SignUpTab({Key key}) : super(key: key);
 
-  final _signupFormKey = GlobalKey<FormState>();
+  static final _signupFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final usernameController = TextEditingController();
     final passwordContrller = TextEditingController();
     final passwordCheckContrller = TextEditingController();
-    final emailController = TextEditingController();
+    final phoneController = TextEditingController();
+
     return Container(
       child: Form(
         key: _signupFormKey,
@@ -233,7 +251,7 @@ class SignUpTab extends StatelessWidget {
                   style: titleTextStyle,
                 ),
               ),
-              // USERNAME TEXT FIELD
+              //* USERNAME TEXT FIELD
               Padding(
                 padding: tabbedLoginPagging,
                 child: TextFormField(
@@ -256,31 +274,73 @@ class SignUpTab extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              // EMAIL TEXT FIELD
               Padding(
                 padding: tabbedLoginPagging,
-                child: TextFormField(
-                  controller: emailController,
-                  style: onboardingMessageTextStyle,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.transparent,
-                    hintText: 'Email',
-                    contentPadding: const EdgeInsets.all(15),
-                  ),
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      //TODO improve email validation logic
-                      return 'Please enter your e-mail';
-                    }
-                    return null;
-                  },
+                child: Row(
+                  children: <Widget>[
+                    //* PREFIX DROPDOWN
+                    Container(
+                      height: 50,
+                      width: 120,
+                      child: CountryPickerDropdown(
+                        underline: Container(
+                          height: 2,
+                          color: Colors.red,
+                        ),
+                        onTap: () =>
+                            FocusScope.of(context).requestFocus(FocusNode()),
+                        onValuePicked: (Country country) {
+                          print("${country.name}");
+                        },
+                        itemBuilder: (Country country) {
+                          return Row(
+                            children: <Widget>[
+                              SizedBox(width: 8.0),
+                              CountryPickerUtils.getDefaultFlagImage(country),
+                              SizedBox(width: 8.0),
+                              Expanded(child: Text(country.name)),
+                            ],
+                          );
+                        },
+                        itemHeight: null,
+                        isExpanded: true,
+                        icon: Icon(Icons.arrow_downward),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      //* PHONE TEXT FIELD
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: TextFormField(
+                          controller: phoneController,
+                          obscureText: true,
+                          style: onboardingMessageTextStyle,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.transparent,
+                            hintText: 'Phone',
+                            contentPadding: const EdgeInsets.all(15),
+                          ),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Type your password again';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
               Padding(
+                //* FIRST PASSWORD TEXT FIELD
                 padding: tabbedLoginPagging,
                 child: TextFormField(
                   controller: passwordContrller,
@@ -309,7 +369,7 @@ class SignUpTab extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      // PASSWORD TEXT FIELD
+                      //* SECOND PASSWORD TEXT FIELD
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: TextFormField(
@@ -332,7 +392,7 @@ class SignUpTab extends StatelessWidget {
                       ),
                     ),
 
-                    // LOGIN BUTTON
+                    //* SIGN UP BUTTON
                     FlatButton(
                       child: Text(
                         'SignUp',
@@ -340,16 +400,21 @@ class SignUpTab extends StatelessWidget {
                       ),
                       shape: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: myAppTheme['PrimaryActionButtonColor'],
-                            width: 2),
+                          color: myAppTheme['AccentColor'],
+                          width: 2,
+                        ),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       padding: const EdgeInsets.all(15),
                       textColor: myAppTheme['PrimaryActionButtonColor'],
                       onPressed: () {
+                        //TODO do separate function with checks
                         if (_signupFormKey.currentState.validate()) {
-                          BlocProvider.of<PersistedBloc>(context).dispatch(
-                            SigunUpEvent(),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TabbedLandingPage(),
+                            ),
                           );
                         }
                       },
@@ -361,7 +426,7 @@ class SignUpTab extends StatelessWidget {
                 height: 20,
               ),
 
-              // SIGNUP WITH GOOGLE BUTTON
+              //* SIGNUP WITH GOOGLE BUTTON
               FlatButton(
                 color: Colors.black,
                 onPressed: () {},

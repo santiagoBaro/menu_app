@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:menuapp/elements/triangle_painter.dart';
+import 'package:menuapp/tools/visual_assets.dart';
 
 import 'menu_tabbed_body.dart';
 
-class MapMarker extends StatelessWidget {
+class NewMapMarker extends StatelessWidget {
   final String localID;
+  final Color color;
   final String timeValue;
   final String starValue;
   final String priceValue;
   final IconData typeIcon;
-  const MapMarker({
+  const NewMapMarker({
     Key key,
-    @required this.localID,
-    @required this.priceValue,
-    @required this.starValue,
-    @required this.timeValue,
-    @required this.typeIcon,
+    this.localID,
+    this.color,
+    this.timeValue,
+    this.starValue,
+    this.priceValue,
+    this.typeIcon,
   }) : super(key: key);
 
   @override
@@ -27,75 +30,86 @@ class MapMarker extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: Colors.redAccent,
+              color: color,
             ),
             child: GestureDetector(
               onTap: () => funcMarkerTapped(context),
-              child: Column(
-                children: [
-                  Container(height: 5),
-                  Icon(
-                    //* ICON
-                    // shows what type of establishment the local is
-                    typeIcon,
-                    color: Colors.yellow,
-                    size: 20,
-                  ),
-                  Container(height: 3),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Row(children: <Widget>[
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 2.0, vertical: 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(width: 1),
-                      Icon(
-                        //* RATEING ICON
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 7,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            //* RATEING ICON
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 7,
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text(
+                              //* RATEING VALUE
+                              // shows the avarage rateing
+                              starValue,
+                              style: mapMarkerTextStyle),
+                        ],
                       ),
-                      Text(
-                        //* RATEING VALUE
-                        // shows the avarage rateing
-                        starValue,
-                        style: TextStyle(
-                          fontSize: 7,
-                          color: Colors.white,
-                        ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            //* DURATION ICON
+                            Icons.timer,
+                            color: Colors.yellow,
+                            size: 7,
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text(
+                              //* DURATION ICON
+                              // shows the avarage customar stay
+                              timeValue,
+                              style: mapMarkerTextStyle),
+                        ],
                       ),
-                      Icon(
-                        //* DURATION ICON
-                        Icons.timer,
-                        color: Colors.yellow,
-                        size: 7,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            //* PRICE ICON
+                            Icons.attach_money,
+                            color: Colors.yellow,
+                            size: 7,
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text(
+                              //* PRICE VALUE
+                              // shows the locals avarage cost per person
+                              priceValue,
+                              style: mapMarkerTextStyle),
+                        ],
                       ),
-                      Text(
-                        //* DURATION ICON
-                        // shows the avarage customar stay
-                        timeValue,
-                        style: TextStyle(
-                          fontSize: 7,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Icon(
-                        //* PRICE ICON
-                        Icons.attach_money,
-                        color: Colors.yellow,
-                        size: 7,
-                      ),
-                      Text(
-                        //* PRICE VALUE
-                        // shows the locals avarage cost per person
-                        priceValue,
-                        style: TextStyle(
-                          fontSize: 7,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Container(width: 2),
                     ],
                   ),
-                ],
-              ),
+                ),
+                Icon(
+                  //* ICON
+                  // shows what type of establishment the local is
+                  typeIcon,
+                  color: Colors.yellow,
+                  size: 18,
+                ),
+              ]),
             ),
             width: 57,
             height: 38,
@@ -105,7 +119,7 @@ class MapMarker extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: CustomPaint(
             painter: TrianglePainter(
-              strokeColor: Colors.redAccent,
+              strokeColor: color,
               strokeWidth: 10,
               paintingStyle: PaintingStyle.fill,
             ),
@@ -140,9 +154,20 @@ funcMarkerTapped(BuildContext context) {
                     Container(
                       height: (MediaQuery.of(context).size.width - 48) / 3,
                       constraints: BoxConstraints(maxHeight: 260),
-                      child: Image.network(
-                          'https://user-images.githubusercontent.com/37426199/87575121-d2659e80-c6a5-11ea-86cc-8284ab1956ea.png'),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                            'https://user-images.githubusercontent.com/37426199/87575121-d2659e80-c6a5-11ea-86cc-8284ab1956ea.png',
+                          ),
+                        ),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5.0),
+                          topRight: Radius.circular(5.0),
+                        ),
+                      ),
                     ),
+
                     //* MENU BODY
                     Expanded(
                       child: MenuTabbedBody(),
